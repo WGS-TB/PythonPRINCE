@@ -23,9 +23,11 @@ In order to achieve great results with Prince, it is necessary to provide traini
 
 2. Downoald this repo. It contains all the files necessary to run the code. Place your training and actual reads into the same directory.
 
-3. Go to Prince.py. There you will need to write down the names of your training and actual reads, specify the coverage and maybe play with the parameters, if you need to do so.
+3. Go to Prince.py. There you will need to write down the names of the files containing your training and actual reads, specify the coverage and maybe play with the parameters, if you need to do so.
 
-4. Run the code. Get results. Be happy.
+4. Run the modified Prince.py function.
+
+5. An example of how Prince.py should look like is included above.
    
    
 
