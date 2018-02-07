@@ -21,7 +21,7 @@ def fine_filtering(templates, reads, k, f):
         kmer_matches = [0]*number_of_kmers
 
         for read in reads:
-            kmer_reads = [read[i:i + k] for i in range(0, length_of_read - k + 1)]
+            kmer_reads = set([read[i:i + k] for i in range(0, length_of_read - k + 1)])
             read_kmer_matches = [i for i, item in enumerate(kmer_templates) if item in kmer_reads]
 
             if len(read_kmer_matches) >= total_number_of_template_kmers - f:
