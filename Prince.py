@@ -5,16 +5,27 @@ from Kmer_Generator import kmerGenerator
 from COARSE_filtering import coarse_filtering
 from FINE_filtering import fine_filtering
 from match_score import compute_match_score
+import argparse
 
+parser = argparse.ArgumentParser(description='get matchscores.')
+parser.add_argument('-tg', '--target', default=None,
+            help="target genome reads")
+parser.add_argument('-c', '--coarse', default=25,
+            help="coarse filtering kmer length")
+parser.add_argument('-m', '--match', default=15,
+            help="fine filtering kmer length")
+parser.add_argument('-f', '--filter', default=10,
+            help="Kmer mismatches allowed during fine filtering.")
+opts = parser.parse_args()
 
 
 # Variable declarations and imports
 # # #####################################
-filteringKmerLength = 25
-matchingKmerLength = 15
+filteringKmerLength = opts.coarse
+matchingKmerLength = opts.match
 
 
-f0 = 0
+f0 = opts.filter
 
 numberOfClusters = 9
 
@@ -29,12 +40,7 @@ boostingGenomeNames = ["kurono-sequence1_150bp_15x"]
 
 
 #Insert names of YOUR genomes here. No extentions, just the name.
-targetGenomeNames = ["kurono-sequence1_150bp_15x"]
-
-
-#Input coverage of your genomes. Same order as their names above
-boostingCoverage = [15]
-targetCoverage = [15]
+targetGenomeNames = [opts.target]
 
 
 # Determining the match score
@@ -48,64 +54,17 @@ templateKmers = kmerGenerator(templates, filteringKmerLength)
 
 
 #FINE FILTERING, COARSE FILTERING + MATCH SCORE for TRAINING genomes
-boostingMatchScore = compute_match_score(boostingGenomeNames, boostingCoverage, templates, templateKmers,
+boostingMatchScore = compute_match_score(boostingGenomeNames, templates, templateKmers,
                                          filteringKmerLength, matchingKmerLength, f0)
 
 
 
 #FINE FILTERING, COARSE FILTERING + MATCH SCORE for YOUR genomes
-targetMatchScore = compute_match_score(targetGenomeNames, targetCoverage, templates, templateKmers,
+targetMatchScore = compute_match_score(targetGenomeNames, templates, templateKmers,
                                        filteringKmerLength, matchingKmerLength, f0)
 
-
-
-
-
-# print targetMatchScore
-#
-
-
-# for num, genome in enumerate(boostingGenomeNames):
-#     reads1 = list(SeqIO.parse(genome + "_1.fq", "fastq"))
-#     reads2 = list(SeqIO.parse(genome + "_2.fq", "fastq"))
-#
-#     recruitedReads = coarse_filtering(reads1, reads2, filteringKmerLength, templateKmers)
-#     boostingMatchScore[num] = fine_filtering(templates, recruitedReads, matchingKmerLength, f0)
-#
-#
-# maxCov = float(max(boostingCoverage))
-# boostingCoverage = [x / maxCov for x in boostingCoverage]
-#
-# for inx, g in enumerate(boostingMatchScore):
-#     boostingMatchScore[inx] = [t / boostingCoverage[inx] for t in boostingMatchScore[inx]]
-#
-# # #####################################
-#
-
-#
-# numberOfTargetGenomes = len(targetGenomeNames)
-# targetMatchScore = [] * numberOfTargetGenomes
-# targetCoverage = [0] * numberOfTargetGenomes
-#
-#
-# for num, genome in enumerate(targetGenomeNames):
-#     reads1 = list(SeqIO.parse(genome + "_1.fq", "fastq"))
-#     reads2 = list(SeqIO.parse(genome + "_2.fq", "fastq"))
-#
-#     recruitedReads = coarse_filtering(reads1, reads2, filteringKmerLength, templateKmers)
-#     boostingMatchScore[num] = fine_filtering(templates, recruitedReads, matchingKmerLength, f0)
-#
-# maxCov = float(max(boostingCoverage))
-# targetCoverage = [x / maxCov for x in targetCoverage]
-#
-# for inx, g in enumerate(targetMatchScore):
-#     targetMatchScore[inx] = [t / targetCoverage[inx] for t in targetMatchScore[inx]]
-
-
-
-
-# Clustering
-# #####################################
+######################
+#Clustering
 
 for index, template in enumerate(templates):
     # X = [9, 11, 21, 22, 27, 29, 31, 40, 53, 49, 62, 69]
