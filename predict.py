@@ -5,6 +5,7 @@ import csv
 def get_X_and_Y(data,template):
     X,Y = [],[]
     for genome,templateName,tnum,cn,score in data:
+	if score == 0: continue
 	if template == int(tnum): 
 	    X.append(score)
 	    Y.append(cn)
