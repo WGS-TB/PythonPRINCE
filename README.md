@@ -1,35 +1,84 @@
-# Prince-
+# PRINCE - VNTR copy number approximation
 
+PRINCE estimates Variable Number Tandem Repeats (VNTR) copy number from raw next generation sequencing (NGS) data.
 
-## Data Preparation
+## Getting Started
 
-In order to achieve great results with Prince, it is necessary to provide training data that resembles Your data as closely as possible:
-1. "Reference" Genome
+### Prerequisites
 
-   - If available, it is recommended to use a reference genome that is related to Your genome(s), however it is neccessary for it to contain a range of copy numbers within it. 
+Python 2.7 with the following packages installed
 
-   - If no reference genome is available, genomes of similar length and with inserted VNTRs can be generated from scratch, or using any other alternative method.
+```
+biopython
+scipy
+numpy
+```
 
-2. Generating reads from the reference
+### Installing
 
-   - There are numerous tools available for generating reads from a reference. We recommend using ART(https://www.niehs.nih.gov/research/resources/software/biostatistics/art/).
+```
+git clone https://github.com/WGS-TB/PythonPRINCE.git
+```
 
-   - The coverage and length of reads must match that of Your data.
-   
-   
- ## Running Prince
- 
-1. Prince is written in Python 2.7. You'll need that.
+To check PRINCE is installed properly run 
 
-2. Downoald this repo. It contains all the files necessary to run the code. Place your training and actual reads into the same directory.
+```
+python Prince.py -to test_output.txt -t small_test
+```
+The output file should contain a row with 24 real numbers randomly distributed around 0.
 
-3. Go to Prince.py. There you will need to write down the names of your training and actual reads, specify the coverage and maybe play with the parameters, if you need to do so.
+## Running the tests
 
-4. Run the code. Get results. Be happy.
-   
-   
+Explain how to run the automated tests for this system
 
+### Break down into end to end tests
 
+Explain what these tests test and why
 
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc
 
 
