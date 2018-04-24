@@ -23,8 +23,12 @@ def compute_match_score(genome, templates, templateKmers, filteringKmerLength, m
                 try:
                     reads1 = check_file_exists(SeqIO.parse(genome + "_1.fastq", "fastq"))
                     reads2 = check_file_exists(SeqIO.parse(genome + "_2.fastq", "fastq"))
-                except:
-                    raise IOError("Can not open target file %s." % genome)
+		except:
+                    try:
+               		reads1 = check_file_exists(SeqIO.parse(genome, "fastq"))
+                        reads2 = iter(())
+ 		    except:
+                    	raise IOError("Can not open target file %s." % genome)
 
     #Run reads through Coarse Filtering to drastically reduce computation for Fine Filtering
     nucleotides_seen,recruitedReads = coarse_filtering(chain(reads1,reads2), filteringKmerLength, templateKmers)

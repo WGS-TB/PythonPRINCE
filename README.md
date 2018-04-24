@@ -27,58 +27,74 @@ python Prince.py -to test_output.txt -tf sample_targets.txt
 ```
 The output file should contain two rows with 24 random real numbers.
 
-## Running the tests
+## Using PRINCE
 
-Explain how to run the automated tests for this system
+We recommend using Prince's pre-trained model and settings for querying.
 
-### Break down into end to end tests
+### Querying
 
-Explain what these tests test and why
+To query PRINCE you'll need a target file (eg. samples.txt) with the paths to your fastq files.
+Each sample should take up one line. If you are using paired data it is only necessary to specify one file path and name.
+Eg. sample_1.fq + sample_2.fq can be specified by sample or sample_.    
+
+samples.txt should look something like this.
+```
+first_sample
+second_sample.fq
+third_sample.fastq
+sample_folder/fourth_sample_
+```
+Once you have your target file you can run PRINCE.
+Specify a target output file (eg. output.txt) with -to. If the file doesn't exist PRINCE will create one. 
 
 ```
-Give an example
+python Prince.py -tf samples.txt -to output.txt
+``` 
+
+Each line in output.txt will correspond to the predicted VNTR copy numbers for the corresponding sample in your target file.
+
+### Training
+
+If, for some reason, you'd like to train PRINCE on new data you'll need to do a couple things.
+
+You'll need simulated reads from read simulation software. We used ART.
+To use read simulation software you'll need at least one assembled genome of the species of interest.
+You'll need to create multiple altered versions of the genome by deleting the VNTR regions of the assembled genome and then inserting various number of copies of the VNTR template.  
+In the end you should have at least one altered genome with one copy at each VNTR region, a genome with two copies at each region, a genome with three copies etc.
+This should go up to at least 4 but we see no issue with increasing up to 10.
+Once you have your altered genomes you can create simulated reads using your preferred software. 
+
+Create a separate training file for each copy number with the paths to all your genomes with that many copies at each VNTR region.
+Specify your training output file.
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
+python Prince.py -bf training_samples_cn_1.txt -bo training_output.txt -cn 1
+python Prince.py -bf training_samples_cn_2.txt -bo training_output.txt -cn 2
+python Prince.py -bf training_samples_cn_3.txt -bo training_output.txt -cn 3
+python Prince.py -bf training_samples_cn_4.txt -bo training_output.txt -cn 4
 ```
-Give an example
+To use your new training data on your queries specifiy the training output file.
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+python Prince.py -tf samples.txt -to output.txt -bo training_output.txt
+```
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Python 2.7](https://www.python.org/download/releases/2.7/)
+* [ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm)
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Julian Booth**
+* **Margaryta Vityaz** 
+* **Merhdad Mansouri** 
+* **Leonid Chindelevitch** 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
 
 
