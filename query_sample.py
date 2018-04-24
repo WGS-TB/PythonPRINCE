@@ -8,6 +8,8 @@ def test_target(opts, templates, templateKmers):
 	while query:
 
 	    targetFileName = query.split("/")[-1] #CHANGE
+	    print("\nQuerying %s" % targetFileName)
+
     	    targetMatchScore = compute_match_score(query, templates, templateKmers,
                                              opts.coarse,opts.fine,opts.screen)
 
