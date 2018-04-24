@@ -3,9 +3,9 @@ from COARSE_filtering import coarse_filtering
 from FINE_filtering import fine_filtering
 from itertools import chain
 
-def check_file_exists(iter):
-    first=next(iter)
-    return(chain([first],iter))
+def check_file_exists(itr8tr):
+    first=next(itr8tr)
+    return(chain([first],itr8tr))
 
 def compute_match_score(genome, templates, templateKmers, filteringKmerLength, matchingKmerLength, f0):    
     try:
@@ -35,7 +35,6 @@ def compute_match_score(genome, templates, templateKmers, filteringKmerLength, m
 
     #Normalize score by adjusting for coverage
     matchScore = [t/coverage for t in matchScore]    
-    print(matchScore)
     return matchScore
 
 

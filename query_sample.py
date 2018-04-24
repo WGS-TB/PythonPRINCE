@@ -27,4 +27,5 @@ def test_target(opts, templates, templateKmers):
             	    f.write("," + str(y_predict))
 
         	f.write("\n")
+	    print("Done with %s" % targetFileName)
 	    query = file.readline().strip("\n")

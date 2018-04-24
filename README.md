@@ -23,9 +23,9 @@ git clone https://github.com/WGS-TB/PythonPRINCE.git
 To check PRINCE is installed properly run 
 
 ```
-python Prince.py -to test_output.txt -t small_test
+python Prince.py -to test_output.txt -tf sample_targets.txt
 ```
-The output file should contain a row with 24 real numbers randomly distributed around 0.
+The output file should contain two rows with 24 random real numbers.
 
 ## Running the tests
 
