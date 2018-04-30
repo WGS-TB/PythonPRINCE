@@ -56,7 +56,7 @@ def main():
         run_boosts(prince_options, templates,templateNames,templateKmers)
 
     if prince_options.target_file != None:
-        test_target(prince_options, templates, templateKmers)
+        test_target(prince_options, templates, templateNames,templateKmers)
 
 if __name__ == '__main__':
     main()
