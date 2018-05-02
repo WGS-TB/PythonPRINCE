@@ -5,12 +5,7 @@ from query_sample import test_target
 import argparse
 import warnings
 
-#To Train: need: -bf -bo -cn	--- optional: -c -m -f
-#To Query: need: -tf -to  	--- optional: -c -m -f -bo
-
-DEFAULT_COARSE = 9
-DEFAULT_FINE = 9
-DEFAULT_SCREEN = 8
+DEFAULT_K = 9
 DEFAULT_BOOST_OUTPUT = "training_data.txt"
 
 def main():
@@ -27,21 +22,16 @@ def main():
                 help="target genome names in a text file")
     parser.add_argument('-bf', '--boosting_file', default=None,
                 help="training genome file names in a text file")
-    parser.add_argument('-c', '--coarse', default=DEFAULT_COARSE,type=int,
-                help="coarse filtering kmer length")
-    parser.add_argument('-f', '--fine', default=DEFAULT_FINE,type=int,
-                help="fine filtering kmer length")
-    parser.add_argument('-s', '--screen', default=DEFAULT_SCREEN,type=int,
-                help="Kmer mismatches allowed during fine filtering.")
+    parser.add_argument('-k', '--k', default=DEFAULT_K,type=int,
+                help="Kmer size used during read recruitment.")
     parser.add_argument('-cn', '--copynumber', default=1,type=int,
                 help="Copy number for training genome.")
 
     prince_options = parser.parse_args()
 
     #Safety check:
-    if (prince_options.coarse != DEFAULT_COARSE or prince_options.fine != DEFAULT_FINE or prince_options.screen != DEFAULT_SCREEN)\
-	and prince_options.boost_output == DEFAULT_BOOST_OUTPUT:
-	warnings.warn("Warning: Target settings (-c or -f or -s) do not equal training settings. May lead to inaccurate predictions.")
+    if prince_options.k != DEFAULT_K and prince_options.boost_output == DEFAULT_BOOST_OUTPUT:
+	warnings.warn("Warning: Target kmer size does not equal training settings. May lead to inaccurate predictions.")
 
 
     #Template data initialized
@@ -50,7 +40,7 @@ def main():
     templates = [str(t.seq) for t in templates]
 
     #Generate k-mers
-    templateKmers = kmerGenerator(templates, prince_options.coarse)
+    templateKmers = kmerGenerator(templates, prince_options.k)
 
     if prince_options.boosting_file != None:
         run_boosts(prince_options, templates,templateNames,templateKmers)

@@ -1,4 +1,4 @@
-def fine_filtering(templates, reads, k, s=15):
+def fine_filtering(templates, reads, k):
     number_of_templates = len(templates)
     length_of_read = len(reads[0])
     template_coverage = [0] * number_of_templates
@@ -12,7 +12,7 @@ def fine_filtering(templates, reads, k, s=15):
             read_kmers = (read[i:i + k] for i in range(0, length_of_read - k + 1))
             num_read_matches = sum([1 for kmer in read_kmers if kmer in template_kmers])
 
-	    if num_read_matches >= length_of_read-s:
+	    if num_read_matches >= length_of_read-k+1:
                 template_coverage[ind] += num_read_matches
     return template_coverage
 
