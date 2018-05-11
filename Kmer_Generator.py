@@ -9,10 +9,3 @@ def kmerGenerator(inputStrings,k):
         extendedString = string + string[:k-1]
         kmers[j] = [extendedString[i:i + k] for i in range(0, len(extendedString) - k + 1)]
     return kmers
-
-
-
-
-# kmerHasher(["1234","2345","3456","4567"],2)
-
-

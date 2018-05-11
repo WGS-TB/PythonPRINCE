@@ -95,6 +95,3 @@ python Prince.py -tf samples.txt -to output.txt -bo training_output.txt
 
 
 ## Acknowledgments
-
-
-

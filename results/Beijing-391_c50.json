@@ -1,0 +1,438 @@
+{
+    "154": {
+        "AnchoredIrrCount": 184,
+        "Genotype": "2/4",
+        "GenotypeCi": "1-2/2-4",
+        "GenotypeSupport": "0-0-184/0-0-184",
+        "IrrCount": 184,
+        "RepeatId": "154",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 184,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GAGCGGCGCCTATGACTCGCGCCGGCGACGATGCACAGCGAAGCGATGAGGAG",
+        "TargetRegion": "AP014573.1:155322-155427",
+        "UnalignedIrrCount": 0
+    },
+    "1644": {
+        "AnchoredIrrCount": 258,
+        "Genotype": "3/5",
+        "GenotypeCi": "1-3/3-5",
+        "GenotypeSupport": "0-0-258/0-0-258",
+        "IrrCount": 258,
+        "RepeatId": "1644",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 258,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GGCGCGGTTCACGAGCGCCGCTCCTCCTCATCGCTTCGCTCTGCATCGTCGTC",
+        "TargetRegion": "AP014573.1:1649557-1649715",
+        "UnalignedIrrCount": 0
+    },
+    "1955": {
+        "AnchoredIrrCount": 414,
+        "Genotype": "4/8",
+        "GenotypeCi": "1-4/4-8",
+        "GenotypeSupport": "0-0-414/0-0-414",
+        "IrrCount": 414,
+        "RepeatId": "1955",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 414,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GTCTGATTGCCCGGTTCCTCCTCGCGCCGCAAACGGCGCGCATCGTCACCGGGCGTC",
+        "TargetRegion": "AP014573.1:1960944-1961000",
+        "UnalignedIrrCount": 0
+    },
+    "2059": {
+        "AnchoredIrrCount": 228,
+        "Genotype": "2/3",
+        "GenotypeCi": "1-2/2-3",
+        "GenotypeSupport": "0-0-228/0-0-228",
+        "IrrCount": 228,
+        "RepeatId": "2059",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 228,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GAGCGGCGCCAATGAGCCGCGCCGGCGACGATGCAGTGGGGGTACCGCCCGCTTGCGGGGGACGAAGCGATGACGAG",
+        "TargetRegion": "AP014573.1:2063202-2063355",
+        "UnalignedIrrCount": 0
+    },
+    "2163b": {
+        "AnchoredIrrCount": 805,
+        "Genotype": "6/12",
+        "GenotypeCi": "1-6/6-12",
+        "GenotypeSupport": "0-0-805/0-0-805",
+        "IrrCount": 805,
+        "RepeatId": "2163b",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 805,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "ATCGGACCGACACCACCCAGCGCGTTCAGGCTCAACGGAATACCAGGAATAGTAATATCAGGCACCACA",
+        "TargetRegion": "AP014573.1:2169237-2169512",
+        "UnalignedIrrCount": 0
+    },
+    "2165": {
+        "AnchoredIrrCount": 507,
+        "Genotype": "4/7",
+        "GenotypeCi": "1-4/4-7",
+        "GenotypeSupport": "0-0-507/0-0-507",
+        "IrrCount": 507,
+        "RepeatId": "2165",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 507,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "CCGTTGGGTATTGATGTGGGCGGAGGGTTAGGCCCGTTTACGGTGTTCCCGGATGGCTACTCACTTCCGGCAATC",
+        "TargetRegion": "AP014573.1:2170787-2171011",
+        "UnalignedIrrCount": 0
+    },
+    "2347": {
+        "AnchoredIrrCount": 110,
+        "Genotype": "1/2",
+        "GenotypeCi": "1-1/1-2",
+        "GenotypeSupport": "0-0-110/0-0-110",
+        "IrrCount": 110,
+        "RepeatId": "2347",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 110,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GTGGCGACCCGCCGCACCCGGCTCCGCCGCGCTTGCGATCGCCACTGGACCCAACAA",
+        "TargetRegion": "AP014573.1:2352833-2353003",
+        "UnalignedIrrCount": 0
+    },
+    "2401": {
+        "AnchoredIrrCount": 124,
+        "Genotype": "1/3",
+        "GenotypeCi": "1-1/1-3",
+        "GenotypeSupport": "0-0-124/0-0-124",
+        "IrrCount": 124,
+        "RepeatId": "2401",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 124,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "TGATTGCCCGGCTCCTCCTCACCCCGTTACCCGGGGCGCATCGTCGCCGAGCTCGATT",
+        "TargetRegion": "AP014573.1:2407255-2407312",
+        "UnalignedIrrCount": 0
+    },
+    "2461": {
+        "AnchoredIrrCount": 142,
+        "Genotype": "2/3",
+        "GenotypeCi": "1-2/2-3",
+        "GenotypeSupport": "0-0-142/0-0-142",
+        "IrrCount": 142,
+        "RepeatId": "2461",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 142,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "AGCCCGGCGACGACCCGGGTCGGCACGACCCGGGAAGGAACCGGGCAAATCAAGCAC",
+        "TargetRegion": "AP014573.1:2465406-2465519",
+        "UnalignedIrrCount": 0
+    },
+    "2531": {
+        "AnchoredIrrCount": 441,
+        "Genotype": "5/9",
+        "GenotypeCi": "1-5/5-9",
+        "GenotypeSupport": "0-0-441/0-0-441",
+        "IrrCount": 441,
+        "RepeatId": "2531",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 441,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "CTCATCTGCGCCGCTCCTGCTCATCGCTTCGCTCTGCATCGTCACCGGCGCGA",
+        "TargetRegion": "AP014573.1:2536024-2536235",
+        "UnalignedIrrCount": 0
+    },
+    "2687": {
+        "AnchoredIrrCount": 19,
+        "Genotype": "1/1",
+        "GenotypeCi": "1-1/1-1",
+        "GenotypeSupport": "0-0-19/0-0-19",
+        "IrrCount": 19,
+        "RepeatId": "2687",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 19,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GTGACCGCGCCGGCGACGATGCAGAGCGCAGCGATGCTGAGGAGCGGCGCCA",
+        "TargetRegion": "AP014573.1:2691707-2691758",
+        "UnalignedIrrCount": 0
+    },
+    "2996": {
+        "AnchoredIrrCount": 645,
+        "Genotype": "7/13",
+        "GenotypeCi": "1-7/7-13",
+        "GenotypeSupport": "0-0-645/0-0-645",
+        "IrrCount": 645,
+        "RepeatId": "2996",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 645,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "TGACCTCCGCCGGCGACGATGCAGAGCGCAGCGATGAGGAGGAGCGGCGCT",
+        "TargetRegion": "AP014573.1:3000403-3000555",
+        "UnalignedIrrCount": 0
+    },
+    "3007": {
+        "AnchoredIrrCount": 83,
+        "Genotype": "1/2",
+        "GenotypeCi": "1-1/1-2",
+        "GenotypeSupport": "0-0-83/0-0-83",
+        "IrrCount": 83,
+        "RepeatId": "3007",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 83,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "CTGCATCGTCGCCGGCGCGGGTCACTGGCGCCGCTCCTCCCCATCGCTTTGCT",
+        "TargetRegion": "AP014573.1:3011437-3011595",
+        "UnalignedIrrCount": 0
+    },
+    "3171": {
+        "AnchoredIrrCount": 219,
+        "Genotype": "2/4",
+        "GenotypeCi": "1-2/2-4",
+        "GenotypeSupport": "0-0-219/0-0-219",
+        "IrrCount": 219,
+        "RepeatId": "3171",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 219,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GGCGATCGCAAGCGCGGCGAAGCCGGGCGCAGCGGGTCGCCACCATCGGACACA",
+        "TargetRegion": "AP014573.1:3177306-3177467",
+        "UnalignedIrrCount": 0
+    },
+    "3192": {
+        "AnchoredIrrCount": 295,
+        "Genotype": "3/6",
+        "GenotypeCi": "1-3/3-6",
+        "GenotypeSupport": "0-0-295/0-0-295",
+        "IrrCount": 295,
+        "RepeatId": "3192",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 295,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "CATCTGCGCCGCTCCTCCTCATCGCTGCGCTCTGCATCGTCGCCGGCGCCAAC",
+        "TargetRegion": "AP014573.1:3198037-3198248",
+        "UnalignedIrrCount": 0
+    },
+    "3690": {
+        "AnchoredIrrCount": 300,
+        "Genotype": "3/6",
+        "GenotypeCi": "1-3/3-6",
+        "GenotypeSupport": "0-0-300/0-0-300",
+        "IrrCount": 300,
+        "RepeatId": "3690",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 300,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "AGCTCGGCGACGATGCACGCCGCGCAGCGGCGTGAGGAGGAGCCGAGCAGTCCAACAC",
+        "TargetRegion": "AP014573.1:3697299-3697530",
+        "UnalignedIrrCount": 0
+    },
+    "4052": {
+        "AnchoredIrrCount": 874,
+        "Genotype": "4/8",
+        "GenotypeCi": "1-4/4-8",
+        "GenotypeSupport": "0-0-874/0-0-874",
+        "IrrCount": 874,
+        "RepeatId": "4052",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 874,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GTGGCGACCCGCTGCACCCGGCTCTGGGGTGATTGCCTGGCTCCTCCTCGGCCCGTTTTGCGGGCCGCATTGTCGCCAGGCGCGGGGTTTGCGATCGCCACGGGGCTGATG",
+        "TargetRegion": "AP014573.1:4056714-4057157",
+        "UnalignedIrrCount": 0
+    },
+    "4156": {
+        "AnchoredIrrCount": 260,
+        "Genotype": "3/5",
+        "GenotypeCi": "1-3/3-5",
+        "GenotypeSupport": "0-0-260/0-0-260",
+        "IrrCount": 260,
+        "RepeatId": "4156",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 260,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "ACGCGGGCGACCCGCCGCACCCGGCGACAAGCGCCGAGCTTGCGATCGCCCTGAATCCA",
+        "TargetRegion": "AP014573.1:4160395-4160512",
+        "UnalignedIrrCount": 0
+    },
+    "424": {
+        "AnchoredIrrCount": 182,
+        "Genotype": "2/4",
+        "GenotypeCi": "1-2/2-4",
+        "GenotypeSupport": "0-0-182/0-0-182",
+        "IrrCount": 182,
+        "RepeatId": "424",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 182,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GCCGGTGAGCGAGCGCGCGTAGCGGGGGAGCGAACGGCGCAGTTGGCACCA",
+        "TargetRegion": "AP014573.1:428135-428236",
+        "UnalignedIrrCount": 0
+    },
+    "4348": {
+        "AnchoredIrrCount": 233,
+        "Genotype": "3/5",
+        "GenotypeCi": "1-3/3-5",
+        "GenotypeSupport": "0-0-233/0-0-233",
+        "IrrCount": 233,
+        "RepeatId": "4348",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 233,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "CCCGCGCCGGCGACGATGCAAAGCGCAGCGATGAGGAGGAGCGGCGCCAACGG",
+        "TargetRegion": "AP014573.1:4352320-4352372",
+        "UnalignedIrrCount": 0
+    },
+    "577": {
+        "AnchoredIrrCount": 349,
+        "Genotype": "3/6",
+        "GenotypeCi": "1-3/3-6",
+        "GenotypeSupport": "0-0-349/0-0-349",
+        "IrrCount": 349,
+        "RepeatId": "577",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 349,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GCCCGACGACGATGCAGAGCGCGCAGCGCGATGAGAAGGAGTTGGGCGGTTAGGTCGA",
+        "TargetRegion": "AP014573.1:581412-581585",
+        "UnalignedIrrCount": 0
+    },
+    "580": {
+        "AnchoredIrrCount": 160,
+        "Genotype": "1/2",
+        "GenotypeCi": "1-1/1-2",
+        "GenotypeSupport": "0-0-160/0-0-160",
+        "IrrCount": 160,
+        "RepeatId": "580",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 160,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "GATGACCTGCGCCGACGACGATGCAGAGCGTAGCGATGAGGTGGGGGCACCACCCGCTTGCGGGGGGAGAGTGGCGCT",
+        "TargetRegion": "AP014573.1:584703-584856",
+        "UnalignedIrrCount": 0
+    },
+    "802": {
+        "AnchoredIrrCount": 52,
+        "Genotype": "1/1",
+        "GenotypeCi": "1-1/1-1",
+        "GenotypeSupport": "0-0-52/0-0-52",
+        "IrrCount": 52,
+        "RepeatId": "802",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 52,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "CCGGCCTAGCCCGGCGACGATGCAGAGCGAAGCGATGAGGAGGAGCAGGGCAAT",
+        "TargetRegion": "AP014573.1:806529-806582",
+        "UnalignedIrrCount": 0
+    },
+    "960": {
+        "AnchoredIrrCount": 212,
+        "Genotype": "2/4",
+        "GenotypeCi": "1-2/2-4",
+        "GenotypeSupport": "0-0-212/0-0-212",
+        "IrrCount": 212,
+        "RepeatId": "960",
+        "RepeatSizes": {
+            "Repeat1": {
+                "NumSupportingReads": 212,
+                "Size": 1,
+                "Source": "INREPEAT"
+            }
+        },
+        "RepeatUnit": "AGTCAATGGCGCCGCTCCTCCTCATCGCTGCGCTCTGCATCGTCGCCGGCGGT",
+        "TargetRegion": "AP014573.1:964268-964427",
+        "UnalignedIrrCount": 0
+    },
+    "BamStats": {
+        "MedianDepth": 100.0,
+        "ReadLength": 50
+    }
+}

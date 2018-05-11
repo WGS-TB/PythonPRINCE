@@ -46,4 +46,3 @@ def coarse_filtering(reads, k, template_kmers, quality_filter=20):
     #Nucleotides seen takes into account number of reads, read length and skipped read sections
     nucleotides_seen = (j+1)*k_splits_per_read-skipped_reads
     return(nucleotides_seen, recruitedReads)
-

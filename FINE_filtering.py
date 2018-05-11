@@ -15,5 +15,3 @@ def fine_filtering(templates, reads, k):
 	    if num_read_matches >= length_of_read-k+1:
                 template_coverage[ind] += num_read_matches
     return template_coverage
-
-

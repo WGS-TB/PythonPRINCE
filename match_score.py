@@ -40,5 +40,3 @@ def compute_match_score(genome, templates, templateKmers, kmerLength):
     #Normalize score by adjusting for coverage
     matchScore = [t/coverage for t in matchScore]    
     return matchScore
-
-
