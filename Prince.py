@@ -1,107 +1,52 @@
 from Bio import SeqIO
-import numpy as np
-from sklearn.cluster import KMeans
 from Kmer_Generator import kmerGenerator
-from COARSE_filtering import coarse_filtering
-from FINE_filtering import fine_filtering
-from match_score import compute_match_score
+from boost import run_boosts 
+from query_sample import test_target
 import argparse
+import warnings
 
-parser = argparse.ArgumentParser(description='get matchscores.')
-parser.add_argument('-tg', '--target', default=None,
-            help="target genome reads")
-parser.add_argument('-c', '--coarse', default=25,
-            help="coarse filtering kmer length")
-parser.add_argument('-m', '--match', default=15,
-            help="fine filtering kmer length")
-parser.add_argument('-f', '--filter', default=10,
-            help="Kmer mismatches allowed during fine filtering.")
-opts = parser.parse_args()
+DEFAULT_K = 9
+DEFAULT_BOOST_OUTPUT = "training_data.txt"
 
+def main():
+   
+    parser = argparse.ArgumentParser(description='Prince Options.')
+    
+    parser.add_argument('-bo', '--boost_output', default=DEFAULT_BOOST_OUTPUT,
+                help="output file for training data / training data used to predict copy numbers for queries")
+    parser.add_argument('-to', '--target_output', default="results/predictions.csv",
+                help="output file for query copy number predictions")
+    parser.add_argument('-tmp','--templates', default="templates.fasta",
+                help="VNTR templates. Default is for M.TB")
+    parser.add_argument('-tf', '--target_file', default=None,
+                help="target genome names in a text file")
+    parser.add_argument('-bf', '--boosting_file', default=None,
+                help="training genome file names in a text file")
+    parser.add_argument('-k', '--k', default=DEFAULT_K,type=int,
+                help="Kmer size used during read recruitment.")
+    parser.add_argument('-cn', '--copynumber', default=1,type=int,
+                help="Copy number for training genome.")
 
-# Variable declarations and imports
-# # #####################################
-filteringKmerLength = opts.coarse
-matchingKmerLength = opts.match
+    prince_options = parser.parse_args()
 
-
-f0 = opts.filter
-
-numberOfClusters = 9
-
-templates = list(SeqIO.parse("templates.fasta", "fasta"))
-templates = [str(t.seq) for t in templates]
-
-
-
-#Insert names of TRAINING genomes here. No extentions, just the name.
-boostingGenomeNames = ["kurono-sequence1_150bp_15x"]
-
+    #Safety check:
+    if prince_options.k != DEFAULT_K and prince_options.boost_output == DEFAULT_BOOST_OUTPUT:
+	warnings.warn("Warning: Target kmer size does not equal training settings. May lead to inaccurate predictions.")
 
 
-#Insert names of YOUR genomes here. No extentions, just the name.
-targetGenomeNames = [opts.target]
+    #Template data initialized
+    templates = list(SeqIO.parse(prince_options.templates, "fasta"))
+    templateNames = [t.id for t in templates]
+    templates = [str(t.seq) for t in templates]
 
+    #Generate k-mers
+    templateKmers = kmerGenerator(templates, prince_options.k)
 
-# Determining the match score
-# # #####################################
+    if prince_options.boosting_file != None:
+        run_boosts(prince_options, templates,templateNames,templateKmers)
 
+    if prince_options.target_file != None:
+        test_target(prince_options, templates, templateNames,templateKmers)
 
-#Generate k-mers
-templateKmers = kmerGenerator(templates, filteringKmerLength)
-
-
-
-
-#FINE FILTERING, COARSE FILTERING + MATCH SCORE for TRAINING genomes
-boostingMatchScore = compute_match_score(boostingGenomeNames, templates, templateKmers,
-                                         filteringKmerLength, matchingKmerLength, f0)
-
-
-
-#FINE FILTERING, COARSE FILTERING + MATCH SCORE for YOUR genomes
-targetMatchScore = compute_match_score(targetGenomeNames, templates, templateKmers,
-                                       filteringKmerLength, matchingKmerLength, f0)
-
-######################
-#Clustering
-
-for index, template in enumerate(templates):
-    # X = [9, 11, 21, 22, 27, 29, 31, 40, 53, 49, 62, 69]
-    X = [row[index] for row in boostingMatchScore]
-    # X = [j for i in boostingMatchScore for j in i]
-    print X
-    predict = [row[index] for row in targetMatchScore]
-    # predict = [j for i in targetMatchScore for j in i]
-
-    X = (np.array(X)).reshape(-1, 1)
-    predict = (np.array(predict)).reshape(-1, 1)
-
-
-    kmeans = KMeans(n_clusters=numberOfClusters, random_state=0).fit(X)
-
-    output = kmeans.predict(predict)
-    print kmeans.cluster_centers_
-
-
-
-
-    # # https://stackoverflow.com/questions/44888415/how-to-set-k-means-clustering-labels-from-highest-to-lowest-with-python
-    # The values in the lookuptable correspond to the values of the CNVs (The order does)
-
-    idx = np.argsort(kmeans.cluster_centers_.sum(axis=1))
-    lookupTable = np.zeros_like(idx)
-    lookupTable[idx] = np.arange(numberOfClusters)
-    # print idx
-    # print "lookup table", lookupTable
-    print lookupTable[output.labels_]
-    #
-
-
-
-    #run k-means on it
-    #sort centers of clusters
-     #check what sorted center of cluster target belongs to
-
-
-
+if __name__ == '__main__':
+    main()

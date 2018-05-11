@@ -1,32 +1,42 @@
 from Bio import SeqIO
 from COARSE_filtering import coarse_filtering
 from FINE_filtering import fine_filtering
+from itertools import chain
 
+def check_file_exists(itr8tr):
+    first=next(itr8tr)
+    return(chain([first],itr8tr))
 
-
-
-def compute_match_score(listOfGenomes, templates, templateKmers, filteringKmerLength, matchingKmerLength, f0):
-    numberOfGenomes = len(listOfGenomes)
-    matchScore = [[]] * numberOfGenomes
-    genomeCoverage=[]
-    for num, genome in enumerate(listOfGenomes):
+def compute_match_score(genome, templates, templateKmers, kmerLength):    
+    try:
+        reads1 = check_file_exists(SeqIO.parse(genome + "1.fq", "fastq"))
+        reads2 = check_file_exists(SeqIO.parse(genome + "2.fq", "fastq"))
+    except:
         try:
-            reads1 = list(SeqIO.parse(genome + "1.fq", "fastq"))
-            reads2 = list(SeqIO.parse(genome + "2.fq", "fastq"))
+            reads1 = check_file_exists(SeqIO.parse(genome + "1.fastq", "fastq"))
+            reads2 = check_file_exists(SeqIO.parse(genome + "2.fastq", "fastq"))
         except:
-            reads1 = list(SeqIO.parse(genome + "1.fastq", "fastq"))
-            reads2 = list(SeqIO.parse(genome + "2.fastq", "fastq"))
+            try:
+                reads1 = check_file_exists(SeqIO.parse(genome + "_1.fq", "fastq"))
+                reads2 = check_file_exists(SeqIO.parse(genome + "_2.fq", "fastq"))
+            except:
+                try:
+                    reads1 = check_file_exists(SeqIO.parse(genome + "_1.fastq", "fastq"))
+                    reads2 = check_file_exists(SeqIO.parse(genome + "_2.fastq", "fastq"))
+		except:
+                    try:
+               		reads1 = check_file_exists(SeqIO.parse(genome, "fastq"))
+                        reads2 = iter(())
+ 		    except:
+                    	raise IOError("Can not open target file %s." % genome)
 
-        coverage = len(reads1)/1000.0 #assuming all genomes are roughly the same length - # of reads should be proportional to coverage
-        genomeCoverage.append(coverage)
-        recruitedReads = coarse_filtering(reads1, reads2, filteringKmerLength, templateKmers)
-        matchScore[num] = fine_filtering(templates, recruitedReads, matchingKmerLength, f0)
+    #Run reads through Coarse Filtering to drastically reduce computation for Fine Filtering
+    nucleotides_seen,recruitedReads = coarse_filtering(chain(reads1,reads2), kmerLength, templateKmers)
+    coverage = nucleotides_seen/1000000.0 #assuming all genomes are roughly the same length - nucleotides seen should be proportional to coverage
 
-    maxCov = max(genomeCoverage)
-    coverage = [x / maxCov for x in genomeCoverage]
+    #Run reads through Fine Filtering to get score for each template
+    matchScore = fine_filtering(templates, recruitedReads, kmerLength)
 
-    for inx, g in enumerate(matchScore):
-        matchScore[inx] = [t / coverage[inx] for t in matchScore[inx]]
+    #Normalize score by adjusting for coverage
+    matchScore = [t/coverage for t in matchScore]    
     return matchScore
-
-
