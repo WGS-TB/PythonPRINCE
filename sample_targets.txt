@@ -1,2 +1,2 @@
-small_test
-medium_test
+prince/tests/data/small_test
+prince/tests/data/medium_test

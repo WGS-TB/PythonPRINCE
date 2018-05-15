@@ -1,4 +1,4 @@
-from match_score import compute_match_score
+from prince.match_score import compute_match_score
 
 def run_boosts(opts,templates,templateNames,templateKmers):
     with open(opts.boosting_file) as file:

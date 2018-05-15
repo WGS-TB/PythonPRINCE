@@ -1,6 +1,6 @@
 from math import sqrt
-from predict import get_data, get_equations, get_copy_number
-from match_score import compute_match_score
+from prince.predict import get_data, get_equations, get_copy_number
+from prince.match_score import compute_match_score
 import time
 
 def test_target(opts, templates,templateNames, templateKmers):

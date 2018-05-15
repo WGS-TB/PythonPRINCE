@@ -23,7 +23,7 @@ git clone https://github.com/WGS-TB/PythonPRINCE.git
 To check PRINCE is installed properly run 
 
 ```
-python Prince.py -to test_output.txt -tf sample_targets.txt
+prince -to test_output.txt -tf sample_targets.txt
 ```
 The output file should contain two rows with 24 random real numbers.
 
@@ -48,7 +48,7 @@ Once you have your target file you can run PRINCE.
 Specify a target output file (eg. output.txt) with -to. If the file doesn't exist PRINCE will create one. 
 
 ```
-python Prince.py -tf samples.txt -to output.txt
+prince -tf samples.txt -to output.txt
 ``` 
 
 Each line in output.txt will correspond to the predicted VNTR copy numbers for the corresponding sample in your target file.
@@ -67,14 +67,14 @@ Once you have your altered genomes you can create simulated reads using your pre
 Create a separate training file for each copy number with the paths to all your genomes with that many copies at each VNTR region.
 Specify your training output file.
 ```
-python Prince.py -bf training_samples_cn_1.txt -bo training_output.txt -cn 1
-python Prince.py -bf training_samples_cn_2.txt -bo training_output.txt -cn 2
-python Prince.py -bf training_samples_cn_3.txt -bo training_output.txt -cn 3
-python Prince.py -bf training_samples_cn_4.txt -bo training_output.txt -cn 4
+prince -bf training_samples_cn_1.txt -bo training_output.txt -cn 1
+prince -bf training_samples_cn_2.txt -bo training_output.txt -cn 2
+prince -bf training_samples_cn_3.txt -bo training_output.txt -cn 3
+prince -bf training_samples_cn_4.txt -bo training_output.txt -cn 4
 ```
 To use your new training data on your queries specifiy the training output file.
 ```
-python Prince.py -tf samples.txt -to output.txt -bo training_output.txt
+prince -tf samples.txt -to output.txt -bo training_output.txt
 ```
 
 ## Built With

@@ -1,6 +1,6 @@
 from Bio import SeqIO
-from COARSE_filtering import coarse_filtering
-from FINE_filtering import fine_filtering
+from prince.coarse_filtering import coarse_filtering
+from prince.fine_filtering import fine_filtering
 from itertools import chain
 
 def check_file_exists(itr8tr):
