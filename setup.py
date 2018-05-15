@@ -12,6 +12,7 @@ Intended Audience :: Science/Research
 Topic :: Scientific/Engineering
 Topic :: Scientific/Engineering :: Bio-Informatics
 Programming Language :: Python :: 2.7
+Programming Language :: Python :: 3.6
 Operating System :: POSIX :: Linux
 """.strip().split('\n')
 

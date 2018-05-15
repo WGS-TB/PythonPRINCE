@@ -6,7 +6,7 @@ PRINCE estimates Variable Number Tandem Repeats (VNTR) copy number from raw next
 
 ### Prerequisites
 
-Python 2.7 with the following packages installed
+Python 2.7 or 3.6 with the following packages installed
 
 ```
 biopython
