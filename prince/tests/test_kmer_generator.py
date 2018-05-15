@@ -1,9 +1,9 @@
 import unittest
 
-from prince.kmer_generator import kmerGenerator
+from prince.kmer_generator import kmer_generator
 
 class KmerGeneratorTest(unittest.TestCase):
     
-    def testKmerGenerator(self):
-        self.assertEqual(kmerGenerator("", 0), {})
-        self.assertEqual(kmerGenerator("A",1), {0: ['A']})
+    def test_kmer_generator(self):
+        self.assertEqual(kmer_generator("", 0), {})
+        self.assertEqual(kmer_generator("A",1), {0: ['A']})
