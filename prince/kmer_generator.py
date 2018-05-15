@@ -1,7 +1,7 @@
 import numpy as np
 # makes dict of strings, of size k
 
-def kmerGenerator(inputStrings,k):
+def kmer_generator(inputStrings,k):
     numberOfStrings = len(inputStrings)
     kmers = dict.fromkeys(np.arange(numberOfStrings))
 

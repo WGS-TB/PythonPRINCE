@@ -4,7 +4,7 @@ import argparse
 import warnings
 
 from Bio import SeqIO
-from prince.kmer_generator import kmerGenerator
+from prince.kmer_generator import kmer_generator
 from prince.boost import run_boosts 
 from prince.query_sample import test_target
 
@@ -42,7 +42,7 @@ def main():
     templates = [str(t.seq) for t in templates]
 
     #Generate k-mers
-    templateKmers = kmerGenerator(templates, prince_options.k)
+    templateKmers = kmer_generator(templates, prince_options.k)
 
     if prince_options.boosting_file != None:
         run_boosts(prince_options, templates,templateNames,templateKmers)
