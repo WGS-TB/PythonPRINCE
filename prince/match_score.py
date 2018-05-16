@@ -7,7 +7,7 @@ def check_file_exists(itr8tr):
     first=next(itr8tr)
     return(chain([first],itr8tr))
 
-def compute_match_score(genome, templates, templateKmers, kmerLength):    
+def compute_match_score(genome, templates, templateKmers, kmerLength):
     try:
         reads1 = check_file_exists(SeqIO.parse(genome + "1.fq", "fastq"))
         reads2 = check_file_exists(SeqIO.parse(genome + "2.fq", "fastq"))
@@ -23,12 +23,12 @@ def compute_match_score(genome, templates, templateKmers, kmerLength):
                 try:
                     reads1 = check_file_exists(SeqIO.parse(genome + "_1.fastq", "fastq"))
                     reads2 = check_file_exists(SeqIO.parse(genome + "_2.fastq", "fastq"))
-		except:
+                except:
                     try:
-               		reads1 = check_file_exists(SeqIO.parse(genome, "fastq"))
+                        reads1 = check_file_exists(SeqIO.parse(genome, "fastq"))
                         reads2 = iter(())
- 		    except:
-                    	raise IOError("Can not open target file %s." % genome)
+                    except:
+                        raise IOError("Can not open target file %s." % genome)
 
     #Run reads through Coarse Filtering to drastically reduce computation for Fine Filtering
     nucleotides_seen,recruitedReads = coarse_filtering(chain(reads1,reads2), kmerLength, templateKmers)
@@ -38,5 +38,5 @@ def compute_match_score(genome, templates, templateKmers, kmerLength):
     matchScore = fine_filtering(templates, recruitedReads, kmerLength)
 
     #Normalize score by adjusting for coverage
-    matchScore = [t/coverage for t in matchScore]    
+    matchScore = [t/coverage for t in matchScore]
     return matchScore
