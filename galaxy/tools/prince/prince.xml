@@ -21,7 +21,7 @@
     </conditional>
   </inputs>
   <outputs>
-    <data name="output_file" format="tabular"/>
+    <data name="output" format="tabular"/>
   </outputs>
   <help><![CDATA[
   ]]></help>
