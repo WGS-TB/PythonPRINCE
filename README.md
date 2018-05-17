@@ -5,6 +5,7 @@ PRINCE estimates Variable Number Tandem Repeats (VNTR) copy number from raw next
 ## Build status
 
 [![Build Status](https://travis-ci.org/WGS-TB/PythonPRINCE.svg?branch=master)](https://travis-ci.org/WGS-TB/PythonPRINCE)
+[![Coverage Status](https://coveralls.io/repos/github/WGS-TB/PythonPRINCE/badge.svg?branch=master)](https://coveralls.io/github/WGS-TB/PythonPRINCE?branch=master)
 
 ## Getting Started
 
