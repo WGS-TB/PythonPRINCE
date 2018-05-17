@@ -1,0 +1,30 @@
+<tool id="prince" name="PRINCE VNTR Copy Number Approximation" version="0.0.0">
+  <requirements>
+    <requirement type="package" version="0.0.0">prince</requirement>
+  </requirements>
+  <command detect_errors="exit_code"><![CDATA[
+    prince
+  ]]></command>
+  <inputs>
+    <conditional name="input_type">
+      <param name="sPaired" type="select" label="Single Pair or Collection">
+        <option value="collections">Paired-end Collections</option>
+        <option value="paired">Paired-end</option>
+      </param>
+      <when value="paired">
+        <param name="pInput1" type="data" format="fastq,fastqsanger,fastqillumina,fastqsolexa" label="Forward FASTQ file" help="Must have ASCII encoded quality scores"/>
+        <param name="pInput2" type="data" format="fastq,fastqsanger,fastqillumina,fastqsolexa" label="Reverse FASTQ file" help="File format must match the Forward FASTQ file"/>
+      </when>
+      <when value="collections">
+        <param name="fastq_collection" type="data_collection" label="Paired-end Fastq collection" help="" optional="false" format="txt" collection_type="paired" />
+      </when>
+    </conditional>
+  </inputs>
+  <outputs>
+    <data name="output_file" format="tabular"/>
+  </outputs>
+  <help><![CDATA[
+  ]]></help>
+  <citations>
+  </citations>
+</tool>
