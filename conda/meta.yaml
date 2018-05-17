@@ -1,0 +1,36 @@
+{% set name = "PRINCE" %}
+{% set version = "0.0.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/WGS-TB/PythonPRINCE.git
+  git_rev: master
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+    - biopython
+    - numpy
+    - scipy
+
+test:
+  imports:
+    - prince
+  commands
+    - prince -h
+
+about:
+  home: https://github.com/WGS-TB/PythonPrince
+  summary: PRINCE estimates Variable Number Tandem Repeats (VNTR) copy number from raw next generation sequencing (NGS) data.
+  license: MIT
+  license_file: LICENSE
