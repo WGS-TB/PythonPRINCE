@@ -18,11 +18,11 @@ install:
   - hash -r
   - conda update -q -y conda
   - conda info -a
-  - conda create -c bioconda -c conda-forge -q -y -n test-environment python=$TRAVIS_PYTHON_VERSION 
+  - conda create -c bioconda -c conda-forge -q -y -n test-environment python=$TRAVIS_PYTHON_VERSION coveralls
   - source activate test-environment
   - python setup.py install
   
-script: python setup.py test
+script: coverage run --source=prince setup.py test
 
 after_success:
   - coveralls
