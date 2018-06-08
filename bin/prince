@@ -2,6 +2,7 @@
 
 import argparse
 import warnings
+from pkg_resources import resource_filename
 
 from Bio import SeqIO
 from prince.kmer_generator import kmer_generator
@@ -9,7 +10,7 @@ from prince.boost import run_boosts
 from prince.query_sample import test_target
 
 DEFAULT_K = 9
-DEFAULT_BOOST_OUTPUT = "training_data.txt"
+DEFAULT_BOOST_OUTPUT = resource_filename('prince.resources', 'training_data.txt')
 
 def main():
     parser = argparse.ArgumentParser(description='Prince Options.')
@@ -37,7 +38,8 @@ def main():
 
 
     #Template data initialized
-    templates = list(SeqIO.parse(prince_options.templates, "fasta"))
+    
+    templates = list(SeqIO.parse(resource_filename('prince.resources', prince_options.templates), "fasta"))
     templateNames = [t.id for t in templates]
     templates = [str(t.seq) for t in templates]
 

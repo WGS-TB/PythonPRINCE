@@ -25,13 +25,6 @@ numpy
 git clone https://github.com/WGS-TB/PythonPRINCE.git
 ```
 
-To check PRINCE is installed properly run 
-
-```
-prince -to test_output.txt -tf sample_targets.txt
-```
-The output file should contain two rows with 24 random real numbers.
-
 ## Using PRINCE
 
 We recommend using Prince's pre-trained model and settings for querying.
