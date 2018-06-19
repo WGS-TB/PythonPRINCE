@@ -3,6 +3,7 @@ from prince.coarse_filtering import coarse_filtering
 from prince.fine_filtering import fine_filtering
 from itertools import chain
 import gzip
+import os.path
 
 def check_file_exists(itr8tr):
     first=next(itr8tr)
@@ -26,11 +27,11 @@ def compute_match_score(genome, templates, templateKmers, kmerLength):
                     reads2 = check_file_exists(SeqIO.parse(genome + "_2.fastq", "fastq"))
                 except:
                     try:
-                        with gzip.open(genome + "_1.fastq.gz", "rt") as handle:
-                            reads1 = check_file_exists(SeqIO.parse(handle, "fastq"))
+                        handle1 = gzip.open(genome + "_1.fastq.gz", "rt")
+                        reads1 = check_file_exists(SeqIO.parse(handle1, "fastq"))
 
-                        with gzip.open(genome + "_2.fastq.gz", "rt") as handle:
-                            reads2 = check_file_exists(SeqIO.parse(handle, "fastq"))
+                        handle2 = gzip.open(genome + "_2.fastq.gz", "rt")
+                        reads2 = check_file_exists(SeqIO.parse(handle2, "fastq"))
                     except:
                         try:
                             reads1 = check_file_exists(SeqIO.parse(genome, "fastq"))
