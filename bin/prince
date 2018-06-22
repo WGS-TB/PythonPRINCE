@@ -11,13 +11,17 @@ from prince.query_sample import test_target
 
 DEFAULT_K = 9
 DEFAULT_BOOST_OUTPUT = resource_filename('prince.resources', 'training_data.txt')
+MAJOR_VERSION_K=1
+MINOR_VERSION_K=1
 
 def main():
-    parser = argparse.ArgumentParser(description='Prince Options.')
+    parser = argparse.ArgumentParser(description='Prince (Version %d.%d) Options.'\
+                                     % (MAJOR_VERSION_K,MINOR_VERSION_K))
     
     parser.add_argument('-bo', '--boost_output', default=DEFAULT_BOOST_OUTPUT,
-                        help="output file for training data / training data used to predict copy numbers for queries")
-    parser.add_argument('-to', '--target_output', default="results/predictions.csv",
+                        help="output file for training data / training data used to predict \
+                              copy numbers for queries")
+    parser.add_argument('-to', '--target_output', default="results/predictions.csv",\
                         help="output file for query copy number predictions")
     parser.add_argument('-tmp','--templates', default="templates.fasta",
                 help="VNTR templates. Default is for M.TB")
@@ -29,6 +33,8 @@ def main():
                 help="Kmer size used during read recruitment.")
     parser.add_argument('-cn', '--copynumber', default=1,type=int,
                 help="Copy number for training genome.")
+    parser.add_argument('-np', '--num_procs', default=1,type=int,
+                help="Number of cores for parallel processing.")
 
     prince_options = parser.parse_args()
 

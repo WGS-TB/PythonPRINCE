@@ -2,6 +2,8 @@
 
 PRINCE estimates Variable Number Tandem Repeats (VNTR) copy number from raw next generation sequencing (NGS) data.
 
+## Change History
+* \[insert date here\] **Version 1.1** - Refactored file handling and added multiprocessing. 
 ## Build status
 
 [![Build Status](https://travis-ci.org/WGS-TB/PythonPRINCE.svg?branch=master)](https://travis-ci.org/WGS-TB/PythonPRINCE)
