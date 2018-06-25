@@ -12,11 +12,11 @@ def multiple_targetMatchScore(opts, queries, templates, templateKmers):
     match_scores = []
     for query in queries:
         targetFileName = query.split("/")[-1]
-        print("Querying %s" % targetFileName)
+        print("Querying %s..." % targetFileName)
         start_time = time.time()
         match_score = compute_match_score(query, templates, templateKmers, opts.k) 
         match_scores.append( (targetFileName,match_score) )
-        print("Done with %s in time %s" % (targetFileName,str(time.time()-start_time)))
+        print("Done with %s in time %s seconds." % (targetFileName,str(time.time()-start_time)))
     return match_scores
 
 def test_target(opts, templates,templateNames, templateKmers):
