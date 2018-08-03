@@ -21,8 +21,46 @@ numpy
 
 ### Installing
 
+We recommend installing PRINCE into a conda environment. If you don't already have conda installed, you can download it [here](https://conda.io/miniconda.html). 
+
 ```
+conda create -n prince biopython scipy
+source activate prince
 git clone https://github.com/WGS-TB/PythonPRINCE.git
+cd PythonPRINCE
+pip install -e .
+```
+
+You can verify that prince has been installed by typing:
+
+```
+prince -h
+```
+
+You should see the following output:
+
+```
+usage: prince [-h] [-bo BOOST_OUTPUT] [-to TARGET_OUTPUT] [-tmp TEMPLATES]
+              [-tf TARGET_FILE] [-bf BOOSTING_FILE] [-k K] [-cn COPYNUMBER]
+
+Prince Options.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -bo BOOST_OUTPUT, --boost_output BOOST_OUTPUT
+                        output file for training data / training data used to
+                        predict copy numbers for queries
+  -to TARGET_OUTPUT, --target_output TARGET_OUTPUT
+                        output file for query copy number predictions
+  -tmp TEMPLATES, --templates TEMPLATES
+                        VNTR templates. Default is for M.TB
+  -tf TARGET_FILE, --target_file TARGET_FILE
+                        target genome names in a text file
+  -bf BOOSTING_FILE, --boosting_file BOOSTING_FILE
+                        training genome file names in a text file
+  -k K, --k K           Kmer size used during read recruitment.
+  -cn COPYNUMBER, --copynumber COPYNUMBER
+                        Copy number for training genome.
 ```
 
 ## Using PRINCE
