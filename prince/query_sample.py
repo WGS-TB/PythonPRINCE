@@ -1,4 +1,4 @@
-from math import sqrt
+import os
 from prince.predict import get_data, get_equations, get_copy_number
 from prince.match_score import compute_match_score
 import time
@@ -19,7 +19,7 @@ def test_target(opts, templates,templateNames, templateKmers):
             
             # Write target predictions to text file
             with open(opts.target_output, "a+") as f:
-                if f.readline() == "":
+                if os.path.getsize(opts.target_output) == 0:
                     f.write("Templates,")
                     f.write(",".join(templateNames))
                     f.write("\n")
