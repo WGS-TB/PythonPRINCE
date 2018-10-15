@@ -9,7 +9,7 @@ from prince.kmer_generator import kmer_generator
 from prince.boost import run_boosts 
 from prince.query_sample import test_target
 
-DEFAULT_K = 9
+DEFAULT_K = 25
 DEFAULT_BOOST_OUTPUT = resource_filename('prince.resources', 'training_data.txt')
 
 def main():
@@ -25,7 +25,7 @@ def main():
                 help="target genome names in a text file")
     parser.add_argument('-bf', '--boosting_file', default=None,
                 help="training genome file names in a text file")
-    parser.add_argument('-k', '--k', default=DEFAULT_K,type=int,
+    parser.add_argument('-k', '--k', default=DEFAULT_K, type=int,
                 help="Kmer size used during read recruitment.")
     parser.add_argument('-cn', '--copynumber', default=1,type=int,
                 help="Copy number for training genome.")
