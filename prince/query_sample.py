@@ -8,10 +8,15 @@ def test_target(opts, templates,templateNames, templateKmers):
         query = file.readline().strip("\n")
         while query:
             start_time = time.time()
-            targetFileName = query.split("/")[-1] #CHANGE
+            #add split on tab to deal with second column scenarios
+            targetFileName = query.split("\t")[0].split("/")[-1] #CHANGE
             print("\nQuerying %s" % targetFileName)
-            
-            targetMatchScore = compute_match_score(query, templates, templateKmers, opts.k)
+            query1 = query.split("\t")[0]
+            try:
+                query2 = query.split("\t")[1]
+            except:
+                query2 = ""
+            targetMatchScore = compute_match_score(query1, query2, templates, templateKmers, opts.k)
             
             data = get_data(opts.boost_output)
             equations = get_equations(data)

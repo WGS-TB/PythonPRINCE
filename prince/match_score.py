@@ -8,7 +8,7 @@ def check_file_exists(itr8tr):
     first=next(itr8tr)
     return(chain([first],itr8tr))
 
-def compute_match_score(genome, templates, templateKmers, kmerLength):
+def compute_match_score(genome, genome_reverse, templates, templateKmers, kmerLength):
     try:
         reads1 = check_file_exists(SeqIO.parse(genome + "1.fq", "fastq"))
         reads2 = check_file_exists(SeqIO.parse(genome + "2.fq", "fastq"))
@@ -33,10 +33,32 @@ def compute_match_score(genome, templates, templateKmers, kmerLength):
                             reads2 = check_file_exists(SeqIO.parse(handle, "fastq"))
                     except:
                         try:
-                            reads1 = check_file_exists(SeqIO.parse(genome, "fastq"))
-                            reads2 = iter(())
+                            with gzip.open(genome + "_1.fq.gz", "rt") as handle:
+                                reads1 = check_file_exists(SeqIO.parse(handle, "fastq"))
+
+                            with gzip.open(genome + "_2.fq.gz", "rt") as handle:
+                                reads2 = check_file_exists(SeqIO.parse(handle, "fastq"))
                         except:
-                            raise IOError("Can not open target file %s." % genome)
+                            try:
+                                if genome_reverse == "":
+                                    reads1 = check_file_exists(SeqIO.parse(genome, "fastq"))
+                                    reads2 = iter(())
+                                else:
+                                    reads1 = check_file_exists(SeqIO.parse(genome, "fastq"))
+                                    reads2 = check_file_exists(SeqIO.parse(genome_reverse, "fastq"))
+                            except:
+                                try:
+                                    if genome_reverse == "":
+                                        with gzip.open(genome, "rt") as handle:
+                                            reads1 = check_file_exists(SeqIO.parse(handle, "fastq"))
+                                        reads2 = iter(())
+                                    else:
+                                        with gzip.open(genome, "rt") as handle:
+                                            reads1 = check_file_exists(SeqIO.parse(handle, "fastq"))
+                                        with gzip.open(genome_reverse, "rt") as handle:
+                                            reads2 = check_file_exists(SeqIO.parse(handle, "fastq"))
+                                except:
+                                    raise IOError("Can not open target file %s." % genome)
 
     #Run reads through Coarse Filtering to drastically reduce computation for Fine Filtering
     nucleotides_seen,recruitedReads = coarse_filtering(chain(reads1,reads2), kmerLength, templateKmers)
