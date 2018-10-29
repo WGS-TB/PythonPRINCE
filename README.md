@@ -71,7 +71,7 @@ We recommend using Prince's pre-trained model and settings for querying.
 
 To query PRINCE you'll need a target file (eg. samples.txt) with the paths to your fastq files.
 Each sample should take up one line. If you are using paired data it is only necessary to specify one file path and name.
-Eg. sample_1.fq + sample_2.fq can be specified by sample or sample_.    
+Eg. sample_1.fq + sample_2.fq can be specified by sample or sample_. Alternatively you can specify the forward reads and reverse reads in two columns separated with a tab.   
 
 samples.txt should look something like this.
 ```
@@ -79,6 +79,7 @@ first_sample
 second_sample.fq
 third_sample.fastq
 sample_folder/fourth_sample_
+fifth_sample_2.fastq  fifth_sample_2.fastq
 ```
 Once you have your target file you can run PRINCE.
 Specify a target output file (eg. output.txt) with -to. If the file doesn't exist PRINCE will create one. 
