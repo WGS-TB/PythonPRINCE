@@ -2,6 +2,7 @@
 
 import argparse
 import warnings
+import json
 from pkg_resources import resource_filename
 
 from Bio import SeqIO
@@ -29,28 +30,33 @@ def main():
                 help="Kmer size used during read recruitment.")
     parser.add_argument('-cn', '--copynumber', default=1,type=int,
                 help="Copy number for training genome.")
+    parser.add_argument('-p', '--primers', default="TB_primers_extended.json",
+                help="Flanking sequences used in coverage adjustments")
 
     prince_options = parser.parse_args()
 
     #Safety check:
     if prince_options.k != DEFAULT_K and prince_options.boost_output == DEFAULT_BOOST_OUTPUT:
         warnings.warn("Warning: Target kmer size does not equal training settings. May lead to inaccurate predictions.")
-
+    
+    with open(resource_filename('prince.resources', prince_options.primers)) as primers:
+        primers=json.load(primers)
 
     #Template data initialized
-    
+        
     templates = list(SeqIO.parse(resource_filename('prince.resources', prince_options.templates), "fasta"))
     templateNames = [t.id for t in templates]
     templates = [str(t.seq) for t in templates]
 
     #Generate k-mers
     templateKmers = kmer_generator(templates, prince_options.k)
+    template_obj = {"Names":templateNames, "Sequences":templates, "Kmers":templateKmers}
 
     if prince_options.boosting_file != None:
-        run_boosts(prince_options, templates,templateNames,templateKmers)
+        run_boosts(prince_options, template_obj, primers)
 
     if prince_options.target_file != None:
-        test_target(prince_options, templates, templateNames,templateKmers)
+        test_target(prince_options, template_obj, primers)
 
 if __name__ == '__main__':
     main()

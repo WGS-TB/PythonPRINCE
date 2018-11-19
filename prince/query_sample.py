@@ -3,7 +3,7 @@ from prince.predict import get_data, get_equations, get_copy_number
 from prince.match_score import compute_match_score
 import time
 
-def test_target(opts, templates,templateNames, templateKmers):
+def test_target(opts, template_obj, primers):
     with open(opts.target_file) as file:
         query = file.readline().strip("\n")
         while query:
@@ -11,7 +11,7 @@ def test_target(opts, templates,templateNames, templateKmers):
             targetFileName = query.split("/")[-1] #CHANGE
             print("\nQuerying %s" % targetFileName)
             
-            targetMatchScore = compute_match_score(query, templates, templateKmers, opts.k)
+            targetMatchScore = compute_match_score(query, template_obj, opts.k, primers)
             
             data = get_data(opts.boost_output)
             equations = get_equations(data)
@@ -21,7 +21,7 @@ def test_target(opts, templates,templateNames, templateKmers):
             with open(opts.target_output, "a+") as f:
                 if os.path.getsize(opts.target_output) == 0:
                     f.write("Templates,")
-                    f.write(",".join(templateNames))
+                    f.write(",".join(template_obj["Names"]))
                     f.write("\n")
                 f.write(targetFileName)
                 for t, ms in enumerate(targetMatchScore):

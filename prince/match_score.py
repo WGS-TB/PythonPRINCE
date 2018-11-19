@@ -1,6 +1,8 @@
 from Bio import SeqIO
+from Bio.Seq import Seq
 from prince.coarse_filtering import coarse_filtering
 from prince.fine_filtering import fine_filtering
+from prince.kmer_generator import kmer_generator
 import itertools
 import gzip
 import os.path
@@ -84,7 +86,7 @@ def get_reads_records(filename):
     return record1,record2,gzip_handle1,gzip_handle2
                         
             
-def compute_match_score(filename, templates, templateKmers, kmerLength):
+def compute_match_score(filename, template_obj, kmerLength, primers):
     '''
     Inputs:
     - (str) data_prefix: the prefix of the NGS dataset paths
@@ -92,8 +94,12 @@ def compute_match_score(filename, templates, templateKmers, kmerLength):
     record1, record2, gzip1, gzip2 = get_reads_records(filename) 
     #Run reads through Coarse Filtering to drastically reduce computation for Fine Filtering
     reads = combine_records(record1,record2)
-    nucleotides_seen,recruitedReads = coarse_filtering(reads, kmerLength, templateKmers)
-
+    
+    
+    flanking_sequences = set(kmer for kmers in kmer_generator([sequence for primer_set in primers.values() for sequence in primer_set], kmerLength, extension=False).values() for kmer in kmers)
+    
+    nucleotides_seen,recruitedReads = coarse_filtering(reads, kmerLength, template_obj["Kmers"], flanking_sequences)
+    
     # Close all the things
     record1.close()
     if record2 is not None:
@@ -106,10 +112,14 @@ def compute_match_score(filename, templates, templateKmers, kmerLength):
     coverage = nucleotides_seen/1000000.0 #assuming all genomes are roughly the same length - nucleotides seen should be proportional to coverage
 
     #Run reads through Fine Filtering to get score for each template
-    matchScore = fine_filtering(templates, recruitedReads, kmerLength)
-
-    #Normalize score by adjusting for coverage
-    matchScore = [t/coverage for t in matchScore]
-
+    matchScore, flanking_coverage = fine_filtering(template_obj, recruitedReads, kmerLength, primers)
+    print(matchScore)
+    print(flanking_coverage)
+    #Normalize score by adjusting for coverage and flanking coverage
+    #matchScore = [t/coverage for t in matchScore]
+    #matchScore = [matchScore[i]/(coverage*(1+flanking_coverage[i])) for i in range(len(matchScore))]
+    matchScore = [score/float(1+flanking_coverage[i]) for score in matchScore]
+    print(matchScore)
+    print("\n")
     return matchScore
 

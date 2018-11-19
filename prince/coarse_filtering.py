@@ -1,6 +1,6 @@
 from Bio.Seq import Seq
 
-def coarse_filtering(reads, k, template_kmers, quality_filter=20):
+def coarse_filtering(reads, k, template_kmers, flanking_sequences, quality_filter=20):
     recruitedReads = []
     template_set = set([kmer for value in template_kmers.values() for kmer in value])
     skipped_reads = 0
@@ -28,8 +28,9 @@ def coarse_filtering(reads, k, template_kmers, quality_filter=20):
             
             # Forward
             readSeq = str(read)
-            if readSeq in template_set:
+            if readSeq in template_set or readSeq in flanking_sequences:
                 recruitedReads.append(readSeq)
+          
 
     #Nucleotides seen takes into account number of reads, read length and skipped read sections
     nucleotides_seen = (j+1)*k_splits_per_read-skipped_reads
