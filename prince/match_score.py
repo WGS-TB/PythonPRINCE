@@ -118,7 +118,7 @@ def compute_match_score(filename, template_obj, kmerLength, primers):
     #Normalize score by adjusting for coverage and flanking coverage
     #matchScore = [t/coverage for t in matchScore]
     #matchScore = [matchScore[i]/(coverage*(1+flanking_coverage[i])) for i in range(len(matchScore))]
-    matchScore = [score/float(1+flanking_coverage[i]) for score in matchScore]
+    matchScore = [score/float(1+flanking_coverage[i]) for i,score in enumerate(matchScore)]
     print(matchScore)
     print("\n")
     return matchScore
