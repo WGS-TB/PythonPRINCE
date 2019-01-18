@@ -11,7 +11,7 @@ from prince.boost import run_boosts
 from prince.query_sample import test_target
 
 DEFAULT_K = 25
-DEFAULT_BOOST_OUTPUT = resource_filename('prince.resources', 'training_data.txt')
+DEFAULT_BOOST_OUTPUT = resource_filename('prince.resources', 'training_data_w_extensions.txt')
 
 def main():
     parser = argparse.ArgumentParser(description='Prince Options.')
