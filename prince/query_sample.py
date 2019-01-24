@@ -8,10 +8,15 @@ def test_target(opts, template_obj, primers):
         query = file.readline().strip("\n")
         while query:
             start_time = time.time()
-            targetFileName = query.split("/")[-1] #CHANGE
+            targetFileName = query.split("\t")[0].split("/")[-1] 
+            target_forward = query.split("\t")[0]
+            try:
+                target_reverse = query.split("\t")[1]
+            except:
+                target_reverse = ""
             print("\nQuerying %s" % targetFileName)
             
-            targetMatchScore = compute_match_score(query, template_obj, opts.k, primers)
+            targetMatchScore = compute_match_score(target_forward, target_reverse, template_obj, opts.k, primers)
             
             data = get_data(opts.boost_output)
             equations = get_equations(data)
@@ -19,10 +24,10 @@ def test_target(opts, template_obj, primers):
             
             # Write target predictions to text file
             with open(opts.target_output, "a+") as f:
-                if os.path.getsize(opts.target_output) == 0:
-                    f.write("Templates,")
-                    f.write(",".join(template_obj["Names"]))
-                    f.write("\n")
+                #if os.path.getsize(opts.target_output) == 0:
+                f.write("Templates,")
+                f.write(",".join(template_obj["Names"]))
+                f.write("\n")
                 f.write(targetFileName)
                 for t, ms in enumerate(targetMatchScore):
                     slope, intercept = equations[t]
