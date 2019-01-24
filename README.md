@@ -79,6 +79,7 @@ first_sample
 second_sample.fq
 third_sample.fastq
 sample_folder/fourth_sample_
+sample_folder/fifth_sample_1.fastq.gz  sample_folder/fifth_sample_2.fastq.gz
 ```
 Once you have your target file you can run PRINCE.
 Specify a target output file (eg. output.txt) with -to. If the file doesn't exist PRINCE will create one. 
