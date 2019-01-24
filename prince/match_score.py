@@ -13,7 +13,7 @@ def combine_records(record1,record2):
     else:
         return itertools.chain(record1,record2)
 
-def get_reads_records(filename):
+def get_reads_records(filename, filename_rev = "" ):
     '''
     Retrieves records for the reads.
     Inputs:
@@ -30,17 +30,33 @@ def get_reads_records(filename):
     gzip_handle2 = None
     # First, check whether filename is actually just a path
     columns = filename.split('.')
+    if filename_rev != "":
+        columns_rev = filename.split('.')
     if columns[-1] == 'gz':
         try:
             gzip_handle1 = gzip.open(filename,'rt')
             record1 = SeqIO.parse(gzip_handle1,'fastq')
         except:
             raise IOError("Cannot open target file %s." % filename)
+        #assuming if first file is gz, second file is gz too
+        if filename_rev != "":
+            try:
+                gzip_handle2 = gzip.open(filename_rev,'rt')
+                record2 = SeqIO.parse(gzip_handle2,'fastq')
+            except:
+                raise IOError("Cannot open target file %s." % filename_rev)
+                
     elif columns[-1] == 'fastq' or columns[-1] == 'fq':
         try:
                 record1 = SeqIO.parse(filename,'fastq')
         except:
             raise IOError("Can not open target file %s." % filename)
+        #assuming if first file is fastq or fq, second file is the same too
+        if filename_rev != "":
+            try:
+                record2 = SeqIO.parse(filename_rev,'fastq')
+            except:
+                raise IOError("Cannot open target file %s." % filename_rev)        
     # Otherwise, check all possible file extensions
     else:
         delimiters = ['','_']
@@ -86,12 +102,12 @@ def get_reads_records(filename):
     return record1,record2,gzip_handle1,gzip_handle2
                         
             
-def compute_match_score(filename, template_obj, kmerLength, primers):
+def compute_match_score(filename, filename_rev, template_obj, kmerLength, primers):
     '''
     Inputs:
     - (str) data_prefix: the prefix of the NGS dataset paths
     '''
-    record1, record2, gzip1, gzip2 = get_reads_records(filename) 
+    record1, record2, gzip1, gzip2 = get_reads_records(filename, filename_rev) 
     #Run reads through Coarse Filtering to drastically reduce computation for Fine Filtering
     reads = combine_records(record1,record2)
     
