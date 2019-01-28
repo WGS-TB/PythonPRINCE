@@ -1,2 +1,4 @@
-prince/tests/data/small_test
-prince/tests/data/medium_test
+data/small_test
+data/medium_test
+data/zip_test
+data/zip_test2_1.fastq.gz data/zip_test2_2.fastq.gz
