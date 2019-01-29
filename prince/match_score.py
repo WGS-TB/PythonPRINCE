@@ -106,7 +106,8 @@ def compute_match_score(filename, filename_rev, template_obj, kmerLength, primer
     '''
     Inputs:
     - (str) data_prefix: the prefix of the NGS dataset paths
-    '''
+    
+    ''' 
     record1, record2, gzip1, gzip2 = get_reads_records(filename, filename_rev) 
     #Run reads through Coarse Filtering to drastically reduce computation for Fine Filtering
     reads = combine_records(record1,record2)
