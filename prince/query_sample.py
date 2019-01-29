@@ -24,10 +24,10 @@ def test_target(opts, template_obj, primers):
             
             # Write target predictions to text file
             with open(opts.target_output, "a+") as f:
-                #if os.path.getsize(opts.target_output) == 0:
-                f.write("Templates,")
-                f.write(",".join(template_obj["Names"]))
-                f.write("\n")
+                if os.path.getsize(opts.target_output) == 0:
+                    f.write("Templates,")
+                    f.write(",".join(template_obj["Names"]))
+                    f.write("\n")
                 f.write(targetFileName)
                 for t, ms in enumerate(targetMatchScore):
                     slope, intercept = equations[t]
