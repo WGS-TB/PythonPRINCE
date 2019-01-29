@@ -25,3 +25,7 @@ class GetCopyNumberTest(unittest.TestCase):
         self.assertEqual(get_copy_number(-1, 0, 1), 1)
         self.assertEqual(get_copy_number(100, 100, 100), 10100)
         self.assertEqual(get_copy_number(987, 896, 876), 885228)
+        
+        
+if __name__ == '__main__':
+    unittest.main()

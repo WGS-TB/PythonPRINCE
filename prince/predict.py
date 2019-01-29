@@ -2,6 +2,9 @@ from scipy import stats
 import numpy as np
 import csv
 
+# -*- coding: utf-8 -*-
+# Trying to fix testing bug ^ https://stackoverflow.com/questions/21639275/python-syntaxerror-non-ascii-character-xe2-in-file
+
 def get_X_and_Y(data,template):
     X,Y = [],[]
     for genome,templateName,tnum,cn,score in data:
