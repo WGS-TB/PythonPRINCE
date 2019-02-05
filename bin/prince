@@ -32,6 +32,8 @@ def main():
                 help="Copy number for training genome.")
     parser.add_argument('-p', '--primers', default="TB_primers_extended.json",
                 help="Flanking sequences used in coverage adjustments")
+    parser.add_argument('-np', '--num_procs', default=1,type=int,
+                help="Number of cores for parallel processing.")
 
     prince_options = parser.parse_args()
 

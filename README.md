@@ -42,6 +42,7 @@ You should see the following output:
 ```
 usage: prince [-h] [-bo BOOST_OUTPUT] [-to TARGET_OUTPUT] [-tmp TEMPLATES]
               [-tf TARGET_FILE] [-bf BOOSTING_FILE] [-k K] [-cn COPYNUMBER]
+              [-p PRIMERS] [-np NUM_PROCS]
 
 Prince Options.
 
@@ -61,6 +62,11 @@ optional arguments:
   -k K, --k K           Kmer size used during read recruitment.
   -cn COPYNUMBER, --copynumber COPYNUMBER
                         Copy number for training genome.
+  -p PRIMERS, --primers PRIMERS
+                        Flanking sequences used in coverage adjustments
+  -np NUM_PROCS, --num_procs NUM_PROCS
+                        Number of cores for parallel processing.
+                        
 ```
 
 ## Using PRINCE

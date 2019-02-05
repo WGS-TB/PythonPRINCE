@@ -41,7 +41,7 @@ def get_reads_records(query):
         except:
             filename_rev = ""
     
-    print("\nQuerying %s" % targetFileName,filename,filename_rev)
+    print("\nRunning %s" % targetFileName)
     
     
     columns = filename.split('.')
@@ -114,7 +114,7 @@ def get_reads_records(query):
                             raise IOError("Cannot open target file " + filename)
         if record1 is None:
             raise IOError("Cannot open target file " + filename)
-    return record1,record2,gzip_handle1,gzip_handle2
+    return record1,record2,gzip_handle1,gzip_handle2, filename
                         
             
 def compute_match_score(query, template_obj, kmerLength, primers):
@@ -123,7 +123,8 @@ def compute_match_score(query, template_obj, kmerLength, primers):
     - (str) data_prefix: the prefix of the NGS dataset paths
     
     ''' 
-    record1, record2, gzip1, gzip2 = get_reads_records(query) 
+    record1, record2, gzip1, gzip2, filename = get_reads_records(query) 
+    
     #Run reads through Coarse Filtering to drastically reduce computation for Fine Filtering
     reads = combine_records(record1,record2)
     
@@ -147,11 +148,8 @@ def compute_match_score(query, template_obj, kmerLength, primers):
     matchScore, flanking_coverage = fine_filtering(template_obj, recruitedReads, kmerLength, primers)
     print(matchScore)
     print(flanking_coverage)
-    #Normalize score by adjusting for coverage and flanking coverage
-    #matchScore = [t/coverage for t in matchScore]
-    #matchScore = [matchScore[i]/(coverage*(1+flanking_coverage[i])) for i in range(len(matchScore))]
     matchScore = [score/float(1+flanking_coverage[i]) for i,score in enumerate(matchScore)]
     print(matchScore)
     print("\n")
-    return matchScore
+    return matchScore, filename
 
