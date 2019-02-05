@@ -13,7 +13,7 @@ def combine_records(record1,record2):
     else:
         return itertools.chain(record1,record2)
 
-def get_reads_records(filename, filename_rev = "" ):
+def get_reads_records(query):
     '''
     Retrieves records for the reads.
     Inputs:
@@ -29,6 +29,21 @@ def get_reads_records(filename, filename_rev = "" ):
     gzip_handle1 = None
     gzip_handle2 = None
     # First, check whether filename is actually just a path
+    
+    targetFileName = query.split("\t")[0].split("/")[-1]
+    if "\t" in query:
+        filename = query.split("\t")[0]
+        filename_rev = query.split("\t")[1]
+    else:
+        filename = query.split(" ")[0]
+        try:
+            filename_rev = query.split(" ")[1]
+        except:
+            filename_rev = ""
+    
+    print("\nQuerying %s" % targetFileName,filename,filename_rev)
+    
+    
     columns = filename.split('.')
     if filename_rev != "":
         columns_rev = filename.split('.')
@@ -102,13 +117,13 @@ def get_reads_records(filename, filename_rev = "" ):
     return record1,record2,gzip_handle1,gzip_handle2
                         
             
-def compute_match_score(filename, filename_rev, template_obj, kmerLength, primers):
+def compute_match_score(query, template_obj, kmerLength, primers):
     '''
     Inputs:
     - (str) data_prefix: the prefix of the NGS dataset paths
     
     ''' 
-    record1, record2, gzip1, gzip2 = get_reads_records(filename, filename_rev) 
+    record1, record2, gzip1, gzip2 = get_reads_records(query) 
     #Run reads through Coarse Filtering to drastically reduce computation for Fine Filtering
     reads = combine_records(record1,record2)
     

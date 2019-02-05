@@ -43,8 +43,17 @@ class OpenFiles(unittest.TestCase):
         self.assertIsNotNone(gzip_handle1)
         self.assertIsNotNone(gzip_handle2)
         
-    def test_get_zip_two_lines_reads_records(self):
-        record1,record2,gzip_handle1,gzip_handle2 = get_reads_records(self.PATH_PREFIX + "zip_test2_1.fastq.gz", self.PATH_PREFIX + "zip_test2_2.fastq.gz")
+    def test_get_zip_two_lines_reads_records_tab_split(self):
+        record1,record2,gzip_handle1,gzip_handle2 = get_reads_records(self.PATH_PREFIX + "zip_test2_1.fastq.gz\t" + self.PATH_PREFIX + "zip_test2_2.fastq.gz")
+        self.assertIsNotNone(record1)
+        self.assertIsNotNone(record2)
+        self.assertNotEqual(record1, record2)
+        self.assertNotEqual(gzip_handle1, gzip_handle2)
+        self.assertIsNotNone(gzip_handle1)
+        self.assertIsNotNone(gzip_handle2)
+        
+    def test_get_zip_two_lines_reads_records_space_split(self):
+        record1,record2,gzip_handle1,gzip_handle2 = get_reads_records(self.PATH_PREFIX + "zip_test2_1.fastq.gz " + self.PATH_PREFIX + "zip_test2_2.fastq.gz")
         self.assertIsNotNone(record1)
         self.assertIsNotNone(record2)
         self.assertNotEqual(record1, record2)
@@ -71,10 +80,10 @@ class MatchScoreTest(unittest.TestCase):
         
         
     def test_compute_match_score(self):
-        match_score_small = compute_match_score(self.PATH_PREFIX + "small_test", "", self.template_obj, 25, self.primers)
-        match_score_medium_1 = compute_match_score(self.PATH_PREFIX + "medium_test", "", self.template_obj, 25, self.primers)
+        match_score_small = compute_match_score(self.PATH_PREFIX + "small_test", self.template_obj, 25, self.primers)
+        match_score_medium_1 = compute_match_score(self.PATH_PREFIX + "medium_test", self.template_obj, 25, self.primers)
         
-        match_score_medium_2 = compute_match_score(self.PATH_PREFIX + "medium_test1.fq", self.PATH_PREFIX + "medium_test2.fq", self.template_obj, 25, self.primers)
+        match_score_medium_2 = compute_match_score(self.PATH_PREFIX + "medium_test1.fq " + self.PATH_PREFIX + "medium_test2.fq", self.template_obj, 25, self.primers)
         
         self.assertEqual(match_score_small, [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
         self.assertEqual(match_score_medium_1, match_score_medium_2)
