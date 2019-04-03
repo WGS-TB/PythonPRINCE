@@ -9,6 +9,7 @@ from Bio import SeqIO
 from prince.kmer_generator import kmer_generator
 from prince.boost import run_boosts 
 from prince.query_sample import test_target
+from prince import __version__
 
 DEFAULT_K = 25
 DEFAULT_BOOST_OUTPUT = resource_filename('prince.resources', 'training_data_w_extensions.txt')
@@ -34,6 +35,8 @@ def main():
                 help="Flanking sequences used in coverage adjustments")
     parser.add_argument('-np', '--num_procs', default=1,type=int,
                 help="Number of cores for parallel processing.")
+    parser.add_argument('-v', '--version', action='version',
+                version=__version__)
 
     prince_options = parser.parse_args()
 
