@@ -146,10 +146,10 @@ def compute_match_score(query, template_obj, kmerLength, primers):
 
     #Run reads through Fine Filtering to get score for each template
     matchScore, flanking_coverage = fine_filtering(template_obj, recruitedReads, kmerLength, primers)
-    print(matchScore)
-    print(flanking_coverage)
+    print("VNTR Coverage:     ", matchScore)
+    print("Flanking Coverage: ", flanking_coverage)
     matchScore = [score/float(1+flanking_coverage[i]) for i,score in enumerate(matchScore)]
-    print(matchScore)
+    print("Adjusted Coverage: ", matchScore)
     print("\n")
     return matchScore, filename
 

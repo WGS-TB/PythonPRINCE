@@ -13,6 +13,8 @@ from prince import __version__
 
 DEFAULT_K = 25
 DEFAULT_BOOST_OUTPUT = resource_filename('prince.resources', 'training_data_w_extensions.txt')
+DEFAULT_PRIMERS = resource_filename('prince.resources', 'TB_primers_extended.json')
+DEFAULT_TEMPLATES = resource_filename('prince.resources', 'templates.fasta')
 
 def main():
     parser = argparse.ArgumentParser(description='Prince Options.')
@@ -21,7 +23,7 @@ def main():
                         help="output file for training data / training data used to predict copy numbers for queries")
     parser.add_argument('-to', '--target_output', default="results/predictions.csv",
                         help="output file for query copy number predictions")
-    parser.add_argument('-tmp','--templates', default="templates.fasta",
+    parser.add_argument('-tmp','--templates', default=DEFAULT_TEMPLATES,
                 help="VNTR templates. Default is for M.TB")
     parser.add_argument('-tf', '--target_file', default=None,
                 help="target genome names in a text file")
@@ -31,7 +33,7 @@ def main():
                 help="Kmer size used during read recruitment.")
     parser.add_argument('-cn', '--copynumber', default=1,type=int,
                 help="Copy number for training genome.")
-    parser.add_argument('-p', '--primers', default="TB_primers_extended.json",
+    parser.add_argument('-p', '--primers', default=DEFAULT_PRIMERS,
                 help="Flanking sequences used in coverage adjustments")
     parser.add_argument('-np', '--num_procs', default=1,type=int,
                 help="Number of cores for parallel processing.")
@@ -44,12 +46,12 @@ def main():
     if prince_options.k != DEFAULT_K and prince_options.boost_output == DEFAULT_BOOST_OUTPUT:
         warnings.warn("Warning: Target kmer size does not equal training settings. May lead to inaccurate predictions.")
     
-    with open(resource_filename('prince.resources', prince_options.primers)) as primers:
+    with open(prince_options.primers) as primers:
         primers=json.load(primers)
 
     #Template data initialized
         
-    templates = list(SeqIO.parse(resource_filename('prince.resources', prince_options.templates), "fasta"))
+    templates = list(SeqIO.parse(prince_options.templates, "fasta"))
     templateNames = [t.id for t in templates]
     templates = [str(t.seq) for t in templates]
 

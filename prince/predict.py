@@ -14,9 +14,9 @@ def get_X_and_Y(data,template):
             Y.append(cn)
     return(X,Y)
 
-def get_equations(data):
+def get_equations(data, number_of_equations):
     equations = []
-    for t in range(24):
+    for t in range(number_of_equations):
         X,Y = get_X_and_Y(data,t)
         X = np.array(X, dtype=np.float64)
         Y = np.array(Y, dtype=np.float64)

@@ -6,6 +6,8 @@ import time
 import multiprocessing as mp
 
 def test_target(opts, template_obj, primers):
+    NUM_LOCI = len(primers)
+
     # Get the query paths
     with open(opts.target_file) as file:
             queries = [line.rstrip("\n") for line in file]
@@ -18,7 +20,7 @@ def test_target(opts, template_obj, primers):
     
     # Write results
     data = get_data(opts.boost_output)
-    equations = get_equations(data)
+    equations = get_equations(data, NUM_LOCI)
     with open(opts.target_output,'a+') as file:
         if os.path.getsize(opts.target_output) == 0:
             file.write("Templates,")
