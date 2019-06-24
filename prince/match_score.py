@@ -117,7 +117,7 @@ def get_reads_records(query):
     return record1,record2,gzip_handle1,gzip_handle2, filename
                         
             
-def compute_match_score(query, template_obj, kmerLength, primers, cn=None):
+def compute_match_score(query, template_obj, opts, primers, cn=None):
     '''
     Inputs:
     - (str) data_prefix: the prefix of the NGS dataset paths
@@ -129,9 +129,9 @@ def compute_match_score(query, template_obj, kmerLength, primers, cn=None):
     reads = combine_records(record1,record2)
     
     
-    flanking_sequences = set(kmer for kmers in kmer_generator([sequence for primer_set in primers.values() for sequence in primer_set], kmerLength, extension=False).values() for kmer in kmers)
+    flanking_sequences = set(kmer for kmers in kmer_generator([sequence for primer_set in primers.values() for sequence in primer_set], opts.k, extension=False).values() for kmer in kmers)
     
-    nucleotides_seen,recruitedReads = coarse_filtering(reads, kmerLength, template_obj["Kmers"], flanking_sequences)
+    nucleotides_seen,recruitedReads = coarse_filtering(reads, opts, template_obj["Kmers"], flanking_sequences)
     
     # Close all the things
     record1.close()
@@ -145,7 +145,7 @@ def compute_match_score(query, template_obj, kmerLength, primers, cn=None):
     coverage = nucleotides_seen/1000000.0 #assuming all genomes are roughly the same length - nucleotides seen should be proportional to coverage
 
     #Run reads through Fine Filtering to get score for each template
-    matchScore, flanking_coverage = fine_filtering(template_obj, recruitedReads, kmerLength, primers)
+    matchScore, flanking_coverage = fine_filtering(template_obj, recruitedReads, opts.k, primers)
     print("VNTR Coverage:     ", matchScore)
     print("Flanking Coverage: ", flanking_coverage)
     matchScore = [score/float(1+flanking_coverage[i]) for i,score in enumerate(matchScore)]

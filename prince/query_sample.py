@@ -14,7 +14,7 @@ def test_target(opts, template_obj, primers):
     
     pool = mp.Pool(processes=opts.num_procs)
     # Run analyses in multiple processes 
-    results = [pool.apply_async(compute_match_score,(query, template_obj, opts.k, primers)) 
+    results = [pool.apply_async(compute_match_score,(query, template_obj, opts, primers)) 
                    for query in queries]
     match_scores = [result.get() for result in results]
     

@@ -10,7 +10,7 @@ def run_boosts(opts, template_obj, primers):
         
     pool = mp.Pool(processes=opts.num_procs)
     # Run analyses in multiple processes 
-    results = [pool.apply_async(compute_match_score,(sample, template_obj, opts.k, primers, cn)) 
+    results = [pool.apply_async(compute_match_score,(sample, template_obj, opts, primers, cn)) 
                    for sample, cn in samples]
 
     match_score_vectors = [result.get() for result in results]

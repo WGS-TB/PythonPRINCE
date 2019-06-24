@@ -12,6 +12,7 @@ from prince.query_sample import test_target
 from prince import __version__
 
 DEFAULT_K = 25
+DEFAULT_Q = 20
 DEFAULT_BOOST_OUTPUT = resource_filename('prince.resources', 'training_data_w_extensions.txt')
 DEFAULT_PRIMERS = resource_filename('prince.resources', 'TB_primers_extended.json')
 DEFAULT_TEMPLATES = resource_filename('prince.resources', 'templates.fasta')
@@ -29,8 +30,10 @@ def main():
                 help="target genome names in a text file")
     parser.add_argument('-bf', '--boosting_file', default=None,
                 help="training genome file names in a text file")
-    parser.add_argument('-k', '--k', default=DEFAULT_K, type=int,
+    parser.add_argument('-k', '--k', default=DEFAULT_K, type=float,
                 help="Kmer size used during read recruitment.")
+    parser.add_argument('-q', '--q', default=DEFAULT_Q, type=float,
+      	        help="Average PHRED quality threshold.")
     parser.add_argument('-p', '--primers', default=DEFAULT_PRIMERS,
                 help="Flanking sequences used in coverage adjustments")
     parser.add_argument('-np', '--num_procs', default=1,type=int,
