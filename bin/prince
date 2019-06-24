@@ -31,8 +31,6 @@ def main():
                 help="training genome file names in a text file")
     parser.add_argument('-k', '--k', default=DEFAULT_K, type=int,
                 help="Kmer size used during read recruitment.")
-    parser.add_argument('-cn', '--copynumber', default=1,type=int,
-                help="Copy number for training genome.")
     parser.add_argument('-p', '--primers', default=DEFAULT_PRIMERS,
                 help="Flanking sequences used in coverage adjustments")
     parser.add_argument('-np', '--num_procs', default=1,type=int,
@@ -60,7 +58,9 @@ def main():
     template_obj = {"Names":templateNames, "Sequences":templates, "Kmers":templateKmers}
 
     if prince_options.boosting_file != None:
-        run_boosts(prince_options, template_obj, primers)
+        boost_output_file = run_boosts(prince_options, template_obj, primers)
+        with open(prince_options.boost_output, "a") as f:
+            f.write(boost_output_file)
 
     if prince_options.target_file != None:
         test_target(prince_options, template_obj, primers)

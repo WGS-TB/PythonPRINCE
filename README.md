@@ -60,8 +60,6 @@ optional arguments:
   -bf BOOSTING_FILE, --boosting_file BOOSTING_FILE
                         training genome file names in a text file
   -k K, --k K           Kmer size used during read recruitment.
-  -cn COPYNUMBER, --copynumber COPYNUMBER
-                        Copy number for training genome.
   -p PRIMERS, --primers PRIMERS
                         Flanking sequences used in coverage adjustments
   -np NUM_PROCS, --num_procs NUM_PROCS
@@ -107,17 +105,31 @@ In the end you should have at least one altered genome with one copy at each VNT
 This should go up to at least 4 but we see no issue with increasing up to 10.
 Once you have your altered genomes you can create simulated reads using your preferred software. 
 
-Create a separate training file for each copy number with the paths to all your genomes with that many copies at each VNTR region.
-Specify your training output file.
+Create a training file (eg. training_samples.txt) with the paths to all your genomes. Each line will correspond to a genome and the number of copies at each VNTR region within that genome, separated by a space.
+
+training_samples.txt should look something like this.
 ```
-prince -bf training_samples_cn_1.txt -bo training_output.txt -cn 1
-prince -bf training_samples_cn_2.txt -bo training_output.txt -cn 2
-prince -bf training_samples_cn_3.txt -bo training_output.txt -cn 3
-prince -bf training_samples_cn_4.txt -bo training_output.txt -cn 4
+genome_w_1_copy 1
+genome_w_2_copies 2
+sample_folder/genome_w_3_copies 3
+another_folder/genome_w_4_copies 4
+genome_w_10_copies 10
 ```
+
+Then to run, specify your training output file with -bo, if the file doesn't exist PRINCE will create one. .
+```
+prince -bf training_samples.txt -bo training_output.txt
+```
+
+
 To use your new training data on your queries specifiy the training output file.
 ```
 prince -tf samples.txt -to output.txt -bo training_output.txt
+```
+
+To accelerate training, specify the number of processes using -np (default is 1).
+```
+prince -tf samples.txt -to output.txt -bo training_output.txt -np 16
 ```
 
 ## Built With

@@ -117,7 +117,7 @@ def get_reads_records(query):
     return record1,record2,gzip_handle1,gzip_handle2, filename
                         
             
-def compute_match_score(query, template_obj, kmerLength, primers):
+def compute_match_score(query, template_obj, kmerLength, primers, cn=None):
     '''
     Inputs:
     - (str) data_prefix: the prefix of the NGS dataset paths
@@ -151,5 +151,9 @@ def compute_match_score(query, template_obj, kmerLength, primers):
     matchScore = [score/float(1+flanking_coverage[i]) for i,score in enumerate(matchScore)]
     print("Adjusted Coverage: ", matchScore)
     print("\n")
+    
+    if cn:
+        return matchScore, filename, cn
+    
     return matchScore, filename
 

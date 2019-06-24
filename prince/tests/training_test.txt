@@ -1,0 +1,6 @@
+prince/tests/data/small_test 1
+prince/tests/data/medium_test  1
+prince/tests/data/zip_test     1
+prince/tests/data/small_test 3
+prince/tests/data/medium_test  3
+prince/tests/data/zip_test     8

@@ -4,7 +4,6 @@ def coarse_filtering(reads, k, template_kmers, flanking_sequences, quality_filte
     recruitedReads = []
     template_set = set([kmer for value in template_kmers.values() for kmer in value])
     skipped_reads = 0
-    
     for j, record in enumerate(reads):
         sequence = record.seq
         quality = record.letter_annotations["phred_quality"]
