@@ -12,9 +12,8 @@ def run_boosts(opts, template_obj, primers):
     # Run analyses in multiple processes 
     results = [pool.apply_async(compute_match_score,(sample, template_obj, opts, primers, cn)) 
                    for sample, cn in samples]
-
-    match_score_vectors = [result.get() for result in results]
     
+    match_score_vectors = [result.get() for result in results]
     
     for line_number,(matchscore_vector, file_name, cn) in enumerate(match_score_vectors):
         for loci_num, matchscore in enumerate(matchscore_vector): 

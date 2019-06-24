@@ -69,6 +69,14 @@ class MatchScoreTest(unittest.TestCase):
     def setUp(self):
         self.PATH_PREFIX = PATH_PREFIX
         
+        class opts_object:
+            def __init__(self, k=25, q=20):
+                self.q = q
+                self.k = k
+        
+        self.opts = opts_object()
+        
+        
         templates = list(SeqIO.parse(resource_filename('prince.resources', "templates.fasta"), "fasta"))
         templateNames = [t.id for t in templates]
         templates = [str(t.seq) for t in templates]
@@ -82,10 +90,10 @@ class MatchScoreTest(unittest.TestCase):
         
         
     def test_compute_match_score(self):
-        match_score_small, filename_small = compute_match_score(self.PATH_PREFIX + "small_test", self.template_obj, 25, self.primers)
-        match_score_medium_1, filename_medium_1 = compute_match_score(self.PATH_PREFIX + "medium_test", self.template_obj, 25, self.primers)
+        match_score_small, filename_small = compute_match_score(self.PATH_PREFIX + "small_test", self.template_obj, self.opts, self.primers)
+        match_score_medium_1, filename_medium_1 = compute_match_score(self.PATH_PREFIX + "medium_test", self.template_obj, self.opts, self.primers)
         
-        match_score_medium_2, filename_medium_2 = compute_match_score(self.PATH_PREFIX + "medium_test1.fq " + self.PATH_PREFIX + "medium_test2.fq", self.template_obj, 25, self.primers)
+        match_score_medium_2, filename_medium_2 = compute_match_score(self.PATH_PREFIX + "medium_test1.fq " + self.PATH_PREFIX + "medium_test2.fq", self.template_obj, self.opts, self.primers)
         
         self.assertEqual(filename_medium_1, self.PATH_PREFIX + "medium_test")
         

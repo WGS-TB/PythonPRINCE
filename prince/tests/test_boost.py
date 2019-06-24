@@ -8,16 +8,17 @@ from prince.kmer_generator import kmer_generator
 
 PATH_PREFIX = "prince/tests/"
 
-class MatchScoreTest(unittest.TestCase):
-    
-    def setUp(self):
-        self.PATH_PREFIX = PATH_PREFIX
-        
-        class opts_object:
-            def __init__(self, boosting_file, num_procs=2, k=25):
+class opts_object:
+            def __init__(self, boosting_file, num_procs=2, k=25, q=20):
                 self.num_procs=num_procs
                 self.boosting_file = boosting_file
                 self.k = k
+                self.q = q
+
+class BoostingTest(unittest.TestCase):
+    
+    def setUp(self):
+        self.PATH_PREFIX = PATH_PREFIX
         
         self.opts1 = opts_object(PATH_PREFIX + "training_test.txt", 2)
         
