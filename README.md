@@ -144,6 +144,7 @@ prince -tf samples.txt -to output.txt -bo training_output.txt -np 16
 * **Julian Booth**
 * **Margaryta Vityaz** 
 * **Merhdad Mansouri** 
+* **Cedric Chauve**
 * **Leonid Chindelevitch** 
 
 ## License
